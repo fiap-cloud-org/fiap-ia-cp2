@@ -80,15 +80,15 @@ class RestauranteJaponesChatbotSimples:
             "sushi de salmão", "sushi salmão", "salmão", "salmao", "salmon", "sake",
             "sushi de atum", "sushi atum", "atum", "tuna", "maguro",
             "sushi de kani", "sushi kani", "kani", "caranguejo", "surimi",
-            
+
             # Temakis especiais
             "temaki hot philadelphia", "hot philadelphia", "hot roll",
             "temaki salmão grelhado", "salmão grelhado", "salmao grelhado", "grilled salmon",
             "temaki califórnia", "temaki california", "califórnia", "california", "california roll",
             "temaki atum spicy", "atum spicy", "spicy tuna", "spicy",
-            "temaki salmão", "temaki salmao", 
+            "temaki salmão", "temaki salmao",
             "temaki atum", "temaki kani", "temaki",
-            
+
             # Pratos quentes
             "yakissoba de frango", "yakissoba frango", "yakissoba carne", "yakissoba misto",
             "yakissoba", "yakisoba", "yaki soba", "macarrão japonês",
@@ -97,7 +97,7 @@ class RestauranteJaponesChatbotSimples:
             "teriyaki chicken", "frango teriyaki", "chicken teriyaki", "teriyaki",
             "ramen", "lamen", "missoshiru", "miso soup", "sopa de miso",
             "gyoza", "guioza", "tempura", "tempora",
-            
+
             # Combinados e especiais
             "combo família", "combo familia", "combo family",
             "combo salmão", "combo salmao", "combo salmon",
@@ -105,35 +105,35 @@ class RestauranteJaponesChatbotSimples:
             "combo atum", "combo tuna",
             "combo executivo", "combo especial", "combo premium",
             "combinado", "combo", "rodízio", "festival",
-            
+
             # Sashimi
             "sashimi de salmão", "sashimi salmão", "sashimi salmao",
             "sashimi de atum", "sashimi atum", "sashimi tuna",
             "sashimi misto", "sashimi mix", "sashimi",
-            
+
             # Gunkan e outros
             "gunkan salmão", "gunkan atum", "gunkan ikura", "gunkan",
             "joe salmão", "joe atum", "joe",
             "skin salmão", "skin salmon", "skin",
-            
+
             # Opções especiais
             "vegetariano", "vegano", "vegan", "sem peixe", "sem carne",
             "sem glúten", "diet", "light", "fitness"
         ]
-        
+
         text_lower = text.lower()
         pratos_encontrados = []
-        
+
         # Busca por pratos, priorizando os mais específicos
         for prato in pratos:
             if prato in text_lower:
                 pratos_encontrados.append(prato)
-        
+
         # Retorna o prato mais específico (mais longo)
         if pratos_encontrados:
             pratos_encontrados.sort(key=len, reverse=True)
             return pratos_encontrados[0]
-        
+
         return None
 
     def load_intents(self):
@@ -141,7 +141,7 @@ class RestauranteJaponesChatbotSimples:
         caminho = Path(__file__).with_name('intents.json')
         with open(caminho, 'r', encoding='utf-8') as f:
             return json.load(f)
-    
+
     def preprocess_text(self, text):
         """Minúsculas, sem acento e sem pontuação; tokeniza, tira stopwords e reduz ao radical (RSLP)."""
         text = re.sub(r'[^\w\s]', ' ', sem_acento(text.lower()))
@@ -225,22 +225,22 @@ class RestauranteJaponesChatbotSimples:
             'reclamacao': ['problema', 'reclamação', 'ruim', 'fria', 'errada', 'atrasada'],
             'despedida': ['tchau', 'bye', 'até logo', 'falou', 'até mais', 'adeus']
         }
-        
+
         best_intent = "desconhecido"
         best_score = 0.0
-        
+
         for intent, words in keywords.items():
             score = sum(1 for word in words if word in message)
             if score > best_score:
                 best_score = score
                 best_intent = intent
-        
+
         # Normaliza o score
         if best_score > 0:
             best_score = min(0.8, best_score * 0.3)
-        
+
         return best_intent, best_score
-    
+
     @staticmethod
     def lista(partes):
         partes = list(partes)
@@ -259,7 +259,7 @@ class RestauranteJaponesChatbotSimples:
         """Retorna resposta para a mensagem, identificando múltiplas intenções e pedidos de sabor."""
         # Normaliza a mensagem
         message = message.strip()
-        
+
         # Divide a mensagem em frases se houver múltiplas
         # Melhora a detecção de separadores de frases
         sentences = SEPARADOR_DE_FRASES.split(message)
@@ -375,12 +375,12 @@ chatbot = RestauranteJaponesChatbotSimples()
 if __name__ == "__main__":
     print("Chatbot do Will Japanese Restaurant iniciado!")
     print("Digite 'sair' para encerrar.")
-    
+
     while True:
         user_input = input("\nVocê: ")
         if user_input.lower() == 'sair':
             break
-        
+
         result = chatbot.get_response(user_input)
         print(f"\nBot: {result['response']}")
         print(f"Intenção detectada: {result['intent']}")
