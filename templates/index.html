@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIZZARIA DO WILL - Chatbot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-container {
+            width: 90%;
+            max-width: 800px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+
+        .chat-header {
+            background: #ff6b6b;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .chat-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .chat-header p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            word-wrap: break-word;
+            position: relative;
+        }
+
+        .message.bot .message-content {
+            background: #e9ecef;
+            color: #333;
+            margin-left: 10px;
+        }
+
+        .message.user .message-content {
+            background: #ff6b6b;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .bot-avatar {
+            width: 35px;
+            height: 35px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 14px;
+        }
+
+        .message-info {
+            font-size: 0.8rem;
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: #fff3cd;
+            border-radius: 10px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .chat-input {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #dee2e6;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #dee2e6;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .chat-input input:focus {
+            border-color: #ff6b6b;
+        }
+
+        .send-btn {
+            padding: 12px 24px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .send-btn:hover {
+            background: #e55555;
+        }
+
+        .send-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+            margin-left: 45px;
+        }
+
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            background: #999;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .probability-high {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .probability-medium {
+            color: #ffc107;
+            font-weight: bold;
+        }
+
+        .probability-low {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .chat-container {
+                width: 95%;
+                height: 80vh;
+            }
+            
+            .message-content {
+                max-width: 85%;
+            }
+        }
+    </style>
+</head>
+<body>    <div class="chat-container">
+        <div class="chat-header">
+            <h1>🍣 WILL JAPANESE RESTAURANT</h1>
+            <p>Seu chatbot para pedidos de comida japonesa!</p>
+        </div>
+          <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="bot-avatar">🍣</div>
+                <div class="message-content">
+                    Irasshaimase! Bem-vindo ao Will Japanese Restaurant! 🍣<br>
+                    Como posso ajudá-lo hoje? Você pode me perguntar sobre nosso cardápio, preços, fazer pedidos ou qualquer outra coisa!
+                </div>
+            </div>
+        </div>
+          <div class="typing-indicator" id="typingIndicator">
+            <div class="bot-avatar">🍣</div>
+            <div class="typing-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Digite sua mensagem..." autofocus>
+            <button id="sendBtn" class="send-btn">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const messageInput = document.getElementById('messageInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const typingIndicator = document.getElementById('typingIndicator');        function addMessage(content, isUser = false, data = null) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+            
+            if (isUser) {
+                messageDiv.innerHTML = `
+                    <div class="message-content">${content}</div>
+                `;
+            } else {
+                let probabilityClass = 'probability-low';
+                if (data && data.probability >= 70) probabilityClass = 'probability-high';
+                else if (data && data.probability >= 40) probabilityClass = 'probability-medium';
+                
+                let infoHtml = '';
+                if (data) {
+                    infoHtml = `
+                        <div class="message-info">
+                            <strong>Intenção:</strong> ${data.intent}<br>
+                            <strong>Confiança:</strong> <span class="${probabilityClass}">${data.probability}%</span>
+                    `;
+                    
+                    if (data.multiple_sentences) {
+                        infoHtml += `<br><strong>Frases processadas:</strong> ${data.sentences_processed}`;
+                        if (data.all_intents && data.all_intents.length > 1) {
+                            infoHtml += `<br><strong>Todas as intenções:</strong> ${data.all_intents.join(', ')}`;
+                            infoHtml += `<br><strong>Probabilidades:</strong> ${data.all_probabilities.join('%, ')}%`;
+                        }
+                    }
+                    
+                    infoHtml += '</div>';
+                }
+                
+                messageDiv.innerHTML = `
+                    <div class="bot-avatar">🍣</div>
+                    <div>
+                        <div class="message-content">${content.replace(/\n/g, '<br>')}</div>
+                        ${infoHtml}
+                    </div>
+                `;
+            }
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTyping() {
+            typingIndicator.style.display = 'flex';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideTyping() {
+            typingIndicator.style.display = 'none';
+        }
+
+        async function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            // Adiciona mensagem do usuário
+            addMessage(message, true);
+            messageInput.value = '';
+            sendBtn.disabled = true;
+            
+            // Mostra indicador de digitação
+            showTyping();
+
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message })
+                });
+
+                const data = await response.json();
+                
+                // Simula tempo de resposta
+                setTimeout(() => {                    hideTyping();
+                    
+                    if (response.ok) {
+                        addMessage(data.response, false, data);
+                    } else {
+                        addMessage('Desculpe, houve um erro. Tente novamente.', false);
+                    }
+                    
+                    sendBtn.disabled = false;
+                    messageInput.focus();
+                }, 1000);
+
+            } catch (error) {
+                hideTyping();
+                addMessage('Erro de conexão. Verifique sua internet e tente novamente.', false);
+                sendBtn.disabled = false;
+                messageInput.focus();
+            }
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Foco inicial
+        messageInput.focus();
+    </script>
+</body>
+</html>

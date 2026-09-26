@@ -1,0 +1,592 @@
+{
+  "intents": [    {
+      "tag": "cumprimento",      "patterns": [
+        "olá", "oi", "eai", "bom dia", "boa tarde", "boa noite", "hey", "hello", "opa", "salve", "fala aí", "e aí cara", "oi tudo bem", "oii", "oie", "oiii", "olá pessoal", "konnichiwa", "konbanwa", "ohayo",
+        "como vai", "tudo bem", "tudo certo", "beleza", "fala", "oi pessoal", "oie gente", "e aí galera", "salve rapaziada", "oi gente", "olá amigos", "eae mano", "fala meu brother", "oi amor", "oi querido",
+        "bom dia pessoal", "boa tarde galera", "boa noite família", "good morning", "good afternoon", "good evening", "hi there", "what's up", "howdy", "greetings", "sup", "yo",
+        "buenas", "hola", "bonjour", "guten tag", "ciao", "namaste", "shalom", "aloha", "habari", "sawubona",
+        "olá chatbot", "oi bot", "hello bot", "cumprimento inicial", "saudação", "início conversa", "primeiro contato", "apresentação", "fala bot",
+        "oi ai", "ola ai", "e ai", "eae", "eai cara", "eai mano", "suave", "sussa", "tranquilo", "de boa", "na paz", "firmeza", "show de bola",
+        "bão", "bãum", "bom diaa", "boooa tarde", "boa tardee", "booooa noite", "bnoite", "bdia", "btarde", "oiii gente", "oiee",
+        "falaê", "fala tu", "fala brother", "fala parça", "fala chief", "fala chefe", "salve mano", "salve família", "salvee", "salvão",
+        "e ae", "e aee", "e aeee", "como você está", "como tá", "como ta", "como vocês estão", "tudo certinho", "tudo beleza", "tudo joia",
+        "alô", "alo", "alou", "ôpa", "opaa", "opinha", "opaaa", "oi sumido", "oi querida", "oi lindeza", "oi gracinha", "hello world",
+        "good day", "top of the morning", "howdy partner", "what up", "whats up", "wassup", "wazzup", "morning", "afternoon", "evening",
+        "hai", "hallo", "hola amigo", "hola hermano", "konnichiwa minna", "ohayo gozaimasu", "kombanwa", "moshi moshi", "yoroshiku",
+        "salut", "salve regina", "shalom aleichem", "as-salamu alaykum", "namaskar", "vanakkam", "adaab", "sat sri akal",
+        "início de conversa", "começar conversa", "primeira vez aqui", "sou novo aqui", "primeira visita", "conhecer o restaurante",
+        "oi tudo bom", "oi td bem", "oi tudo de boa", "oi td de boa", "tudo numa boa", "tudo ok", "tudo oki", "tudo okey",
+        "como é que tá", "como é que está", "como anda", "como andam as coisas", "como vai a vida", "como tão as coisas",
+        "presente", "aqui", "cheguei", "to aqui", "estou aqui", "já cheguei", "acabei de chegar", "vim aqui",
+        "oioi", "oia", "oie oie", "oizinho", "oizão", "hello hello", "hi hi", "hey hey", "heyy", "hiii", "hellooo"
+      ],"responses": [
+        "Irasshaimase! Bem-vindo ao Will Japanese Restaurant! Como posso ajudá-lo hoje?",
+        "Konnichiwa! Que bom ter você aqui! O que gostaria de pedir do nosso cardápio japonês?", 
+        "Olá! Pronto para uma experiência gastronômica japonesa única? Como posso ajudar?",
+        "Bem-vindo ao nosso restaurante japonês! Estou aqui para ajudar com seu pedido. O que deseja?",
+        "Oi! Que alegria recebê-lo! Nossos pratos japoneses estão fresquinhos hoje. O que te interessa?",
+        "Olá! Seja muito bem-vindo(a)! Está com vontade de que tipo de comida japonesa hoje?",
+        "E aí! Pronto para se deliciar com nossos sabores autênticos do Japão?",
+        "Oi! Nosso chef acabou de preparar pratos incríveis. Quer conhecer nossas especialidades?",
+        "Konnichiwa! Hoje temos promoções especiais. Posso te contar mais sobre nosso cardápio?",
+        "Olá! Bem-vindo à melhor experiência japonesa da cidade! Como posso tornar seu dia mais gostoso?"
+      ]
+    },    {
+      "tag": "compra",      "patterns": [
+        "quero comprar", "gostaria de pedir", "quero sushi", "pode me vender", "vou querer", "preciso de", "quero fazer um pedido", "gostaria de comprar", "me vende", "quero pedir salmão", "vou pedir atum", "preciso de um combinado", "quero temaki", "pode fazer yakissoba", "quero sushi de salmão", "gostaria de um hot roll", "fazer pedido", "quero philadelphia", "vou querer califórnia", "preciso de udon", "quero combo", "pedir sashimi",
+        "me dá", "eu quero", "pode trazer", "vou levar", "me traz", "preciso", "gostaria", "queria", "poderia", "será que tem", "tem como fazer", "dá pra fazer", "quero encomendar", "vou encomendar", "fazer encomenda",
+        "estou com fome", "to com fome", "quero comer", "vou comer", "bora comer", "vamos comer", "fome", "faminto", "morrendo de fome", "to faminto", "quero me alimentar", "preciso comer",
+        "delivery", "entrega", "pra viagem", "para viagem", "take away", "balcão", "retirar", "buscar", "pegar no local", "comer aqui", "no local", "mesa", "reserva",
+        "quanto fica", "quanto custa", "valor", "preço", "custo", "orçamento", "pode calcular", "me fala o preço", "quanto dá", "qual o valor", "precificação",
+        "tenho interesse em", "gostaria muito de", "penso em pedir", "estava querendo", "estou pensando em", "me interessei por", "chamou minha atenção",
+        
+        "vou pegar", "bora pegar", "vamo pegar", "quero pegar", "pego", "pegando", "vou querer pegar", "queria pegar", "gostaria de pegar",
+        "compro", "comprando", "vou comprar", "compraria", "compraria sim", "to comprando", "tô comprando", "tava comprando",
+        "peço", "pedindo", "vou pedir", "pediria", "to pedindo", "tô pedindo", "tava pedindo", "tinha pedido", "ia pedir",
+        "solicito", "solicitando", "vou solicitar", "solicitaria", "to solicitando", "tô solicitando",
+        "adquiro", "adquirindo", "vou adquirir", "adquiriria", "to adquirindo", "tô adquirindo",
+        
+        "faminto demais", "morrendo de fome", "com uma fome", "fome danada", "fome de leão", "fome canina", "estômago roncando", "barriga roncando",
+        "to com uma fome", "tô com uma fome", "tava com fome", "fico com fome", "deu fome", "bateu fome", "veio a fome",
+        "apetite", "vontade de comer", "desejo comer", "sonhando com", "louco por", "doido por", "fissurado em",
+        "boca aguando", "água na boca", "saliva", "salivando", "ansioso pra comer", "ansioso para comer",
+        
+        "preciso urgente", "preciso muito", "preciso mesmo", "necessito", "careço", "tô precisando", "to precisando",
+        "necessário", "indispensável", "essencial", "fundamental", "crucial", "vital", "imprescindível",
+        "urge", "urgente", "emergencial", "emergência", "prioridade", "prioritário",
+        
+        "kero", "qro", "qero", "quero mto", "quero mt", "quero d+", "quero demais", "quero muito mesmo",
+        "pf", "pfv", "por favor", "plz", "please", "se possível", "se puder", "se der",
+        "blz", "beleza", "show", "massa", "top", "bacana", "legal", "maneiro", "irado", "da hora",
+        "vlw", "valeu", "tmj", "junto", "partiu", "bora", "vamo", "vamos nessa",
+        
+        "quero sushi", "quero um sushi", "quero uns sushis", "sushi pra mim", "me dá sushi", "sushi aqui",
+        "temaki pra mim", "quero temaki", "me dá temaki", "temaki aqui", "um temaki", "uns temakis",
+        "yakissoba pra mim", "quero yakissoba", "me dá yakissoba", "yakissoba aqui", "um yakissoba",
+        "hot roll pra mim", "quero hot roll", "me dá hot roll", "hot roll aqui", "um hot roll",
+        "combo pra mim", "quero combo", "me dá combo", "combo aqui", "um combo", "combinado pra mim",
+        
+        "salmão grelhado", "salmao grelhado", "salmon grelhado", "salmão na brasa", "salmão assado",
+        "atum fresh", "atum fresco", "atum fresquinho", "atum na hora", "tuna fresh",
+        "philadelphia cremoso", "philadelphia original", "philadelphia especial", "cream cheese philadelphia",
+        "califórnia especial", "california especial", "califórnia tradicional", "california tradicional",
+        "spicy especial", "spicy tradicional", "atum spicy picante", "spicy bem picante",
+        
+        "uma porção", "duas porções", "três porções", "várias porções", "muitas porções",
+        "um prato", "dois pratos", "três pratos", "vários pratos", "muitos pratos",
+        "uma bandeja", "duas bandejas", "uma travessa", "um monte", "bastante", "muito",
+        "pouco", "pouquinho", "um tiquinho", "só um", "só uns", "apenas", "somente",
+        
+        "para almoço", "para jantar", "para lanche", "para ceia", "pra almoçar", "pra jantar",
+        "para comer agora", "pra comer já", "para hoje", "pra hoje", "para amanhã", "pra amanhã",
+        "fim de semana", "final de semana", "para domingo", "pra domingo", "para sábado", "pra sábado",
+        "aniversário", "festa", "comemoração", "celebração", "confraternização", "reunião",
+        
+        "quero experimentar", "vou experimentar", "testar", "provar", "degustar", "conhecer",
+        "primeira vez", "nunca comi", "nunca provei", "curiosidade", "interessado", "interessada",
+        "recomendação", "indicação", "sugestão", "dica", "conselho",
+        
+        "gostaria muito de adquirir", "tenho interesse em adquirir", "pretendo adquirir",
+        "desejo efetuar um pedido", "gostaria de efetuar uma compra", "tenho intenção de comprar",
+        "solicito cordialmente", "requeiro", "demando", "reclamo", "exijo",
+        
+        "vou pegar esse trem", "quero esse negócio", "quero essa parada", "bora pegar essa coisa",
+        "quero esse bagulho", "me dá esse troço", "quero essa bagaça", "pego essa coisa",
+        "mandar brasa", "partir pra cima", "meter a cara", "encarar", "mandar ver",
+        
+        "para família", "pra família", "para galera", "pra galera", "para turma", "pra turma",
+        "para todo mundo", "pra todo mundo", "para compartilhar", "pra compartilhar", "dividir",
+        "para duas pessoas", "pra duas pessoas", "para três pessoas", "pra três pessoas",
+        "casal", "dupla", "trio", "grupo", "pessoal", "molecada", "criançada",
+        
+        "vai ser top", "vai ser show", "vai ser massa", "vai ser bacana", "vai ser legal",
+        "mal posso esperar", "ansioso", "ansiosa", "empolgado", "empolgada", "animado", "animada",
+        "já imaginando", "já pensando", "já sonhando", "já babando", "já com água na boca"
+      ],
+      "responses": [
+        "Perfeito! Temos pratos japoneses deliciosos disponíveis. Que tipo de prato você gostaria? Sushi, temaki, combinado ou yakissoba?",
+        "Claro! Que prato japonês você prefere? Temos sushis frescos, temakis especiais, combinados e pratos quentes!",
+        "Ótima escolha! Qual prato e tamanho você deseja? Nossos sushis são preparados na hora!",
+        "Vou adorar ajudar com seu pedido! Que delícia japonesa você tem em mente?",
+        "Maravilha! Nosso cardápio tem opções incríveis. Prefere algo mais tradicional ou inovador?",
+        "Que bom! Você quer algo leve como sushis ou mais substancioso como yakissoba?",
+        "Excelente! Posso sugerir nossos pratos mais populares ou você já sabe o que quer?",
+        "Perfeito! Hoje temos ingredientes super frescos. Que tipo de sabor está procurando?",
+        "Ótimo! Prefere montar seu próprio combo ou quer uma sugestão do chef?",
+        "Que alegria! Vou te ajudar a escolher algo delicioso. Conta pra mim: doce, salgado, picante?"
+      ]
+    },
+    {
+      "tag": "itens_disponiveis",      "patterns": [
+        "que sushis vocês tem", "quais sabores", "cardápio", "que tem disponível", "mostrar pratos", "lista de sushis", "sabores disponíveis", "menu", "o que vocês vendem", "quais as opções", "tipos de sushi", "sabores que vocês fazem", "qual prato tem", "opções de sabor", "me mostra o cardápio", "ver cardápio", "opções", "temaki", "yakissoba", "combinado", "sashimi", "udon",
+        "catálogo", "catalogo", "lista", "relação", "variedades", "tipos", "especialidades", "pratos especiais", "novidades", "lançamentos", "promoções", "ofertas", "combos", "kits",
+        "o que tem", "que tem pra hoje", "que vocês fazem", "o que fazem", "que comida tem", "comidas", "pratos", "refeições", "lanches", "petiscos", "aperitivos", "sobremesas",
+        "sushi", "sashimi", "temaki", "yakissoba", "udon", "ramen", "missoshiru", "gyoza", "tempura", "teriyaki", "california", "philadelphia", "hot roll", "joe", "skin", "gunkan",
+        "vegetariano", "vegano", "sem glúten", "diet", "light", "fitness", "saudável", "natural", "orgânico", "especial", "premium", "gourmet", "tradicional", "clássico", "moderno",
+        
+        "que tipo de comida", "que tipos de pratos", "variedade de comida", "diversidade culinária", "gama de produtos", "sortimento",
+        "cardápio completo", "menu completo", "tudo que vocês tem", "todas as opções", "todo o cardápio", "carta completa",
+        "que sabores tem", "que gostos tem", "variações de sabor", "tipos de sabor", "saboreamento", "degustação",
+        "me fala o que tem", "conta o que vocês fazem", "explica o cardápio", "detalha os pratos",
+        "sugestões", "recomendações", "indicações", "o que vocês recomendam", "qual é o melhor", "mais pedido",
+        "popular", "favorito", "preferido", "mais vendido", "sucesso", "hit", "campeão de vendas",
+        
+        "tem sushi de que", "sushi de quais sabores", "que peixes tem", "que tipos de peixe", "frutos do mar",
+        "temaki de que sabor", "temaki com que", "hot roll de que", "california com que", "philadelphia de que",
+        "yakissoba tem", "udon tem", "ramen tem", "que pratos quentes", "comida quente", "quentinha",
+        "combinado tem o que", "combo vem com que", "kit inclui o que", "pacote tem", "promoção inclui",
+        
+        "opção vegetariana", "vegano tem", "sem carne tem", "para vegetariano", "sem peixe",
+        "sem glúten tem", "celíaco pode comer", "intolerante pode", "alérgico pode", "restritivo",
+        "diet tem", "light tem", "fitness tem", "saudável tem", "natural tem", "baixa caloria",
+        
+        "novidade", "lançamento", "novo", "recente", "última criação", "inovação", "diferente",
+        "exclusivo", "especial", "único", "limitado", "temporada", "sazonal", "chef especial",
+        "gourmet", "premium", "deluxe", "superior", "top", "high quality", "primeira linha",
+        
+        "tradicional japonês", "autêntico", "original", "clássico japonês", "raiz japonesa", "tipicamente japonês",
+        "moderno", "contemporâneo", "fusion", "adaptado", "brasileiro", "ocidental", "inovador",
+        
+        "entrada", "aperitivo", "antepasto", "petisco", "tira gosto", "beliscar", "começar",
+        "prato principal", "principal", "refeição", "almoço", "jantar", "substancioso", "completo",
+        "sobremesa", "doce", "finalizar", "encerrar", "terminar", "digestivo",
+        
+        "bebida", "drink", "sake", "refrigerante", "suco", "água", "chá", "cerveja", "vinho",
+        "acompanhamento", "complemento", "adicional", "extra", "lado", "junto", "molho",
+        
+        "tamanho", "porção", "quantidade", "serve quantos", "individual", "duplo", "família", "grupo",
+        "pequeno", "médio", "grande", "gigante", "mini", "regular", "super", "mega",
+        
+        "delivery tem", "entrega tem", "leva tem", "pode entregar", "disponível para entrega",
+        "balcão tem", "local tem", "aqui tem", "no restaurante", "presencial",
+        
+        "hoje tem", "disponível hoje", "fresquinho hoje", "do dia", "especial de hoje",
+        "sempre tem", "todo dia tem", "permanente", "fixo", "constante", "regular",
+        
+        "rápido", "express", "ligeiro", "veloz", "ágil", "na hora", "instantâneo",
+        "elaborado", "demorado", "artesanal", "caprichado", "trabalhoso", "complexo",
+        
+        "picante", "apimentado", "ardido", "quente", "spicy", "hot", "forte",
+        "suave", "leve", "mild", "delicado", "sutil", "tranquilo", "calm",
+        "doce", "adocicado", "sweet", "açucarado", "mel", "caramelizado",
+        "salgado", "temperado", "condimentado", "seasoned", "salted",
+        "azedo", "ácido", "cítrico", "limão", "vinagre", "sour",
+        "amargo", "bitter", "cacau", "café", "ervas", "folhas",
+        
+        "crocante", "crunchy", "sequinho", "tostado", "dourado", "friable",
+        "macio", "soft", "cremoso", "smooth", "aveludado", "sedoso",
+        "fresco", "fresh", "gelado", "frio", "refrescante", "cooling",
+        "quente", "hot", "morno", "warm", "aquecido", "heated"
+      ],
+      "responses": [
+        "Nosso cardápio japonês completo:\n\n🍣 SUSHIS TRADICIONAIS\n• Salmão - R$ 18,00 (8 peças)\n• Atum - R$ 20,00 (8 peças)\n• Kani - R$ 15,00 (8 peças)\n• Philadelphia - R$ 25,00 (8 peças)\n\n🍙 TEMAKIS ESPECIAIS\n• Salmão Grelhado - R$ 22,00\n• Hot Philadelphia - R$ 28,00\n• Califórnia - R$ 24,00\n• Atum Spicy - R$ 26,00\n\n🍜 PRATOS QUENTES\n• Yakissoba - R$ 35,00\n• Udon - R$ 32,00\n• Teriyaki Chicken - R$ 38,00\n\n🍱 COMBINADOS\n• Combo Salmão (20 peças) - R$ 65,00\n• Combo Misto (30 peças) - R$ 85,00\n• Combo Família (50 peças) - R$ 120,00",
+        "Temos um cardápio japonês autêntico:\n🍣 Sushis frescos: Salmão, Atum, Kani, Philadelphia\n🍙 Temakis especiais: Hot Roll, Califórnia, Salmão Grelhado\n🍜 Pratos quentes: Yakissoba, Udon, Teriyaki\n🍱 Combinados para compartilhar\n\nTodos preparados com ingredientes frescos e técnicas tradicionais!",
+        "Aqui estão nossas especialidades japonesas:\n🍣 Sushis tradicionais e especiais\n🍙 Temakis crocantes e saborosos\n🍜 Pratos quentes como Yakissoba e Udon\n🍱 Combinados perfeitos para família\n\nTudo preparado por nosso sushiman experiente!",
+        "Nosso menu inclui: Sushis (R$ 15-25), Temakis (R$ 22-28), Pratos Quentes (R$ 32-38) e Combinados (R$ 65-120). Que tipo de prato japonês você prefere?",
+        "Hoje temos especialidades incríveis! Nossos sushis são feitos com peixes frescos do mercado, temakis crocantes e yakissoba no ponto perfeito. Quer conhecer algo específico?",
+        "Nossa carta tem desde o clássico sushi de salmão até criações exclusivas do chef! Também temos opções vegetarianas e sem glúten. O que mais te interessa?",
+        "Cardápio completo disponível! Trabalhamos com ingredientes premium: salmão chileno, atum yellowfin, cream cheese Philadelphia original. Posso detalhar algum prato?",
+        "Temos 4 categorias principais: Sushis tradicionais, Temakis especiais, Pratos quentes e Combinados. Cada um com várias opções deliciosas! Por onde começamos?"
+      ]
+    },    {
+      "tag": "precos",
+      "patterns": [
+        "quanto custa", "qual o preço", "valor do sushi", "preço", "quanto é", "valor", "custa quanto", "preço do salmão", "valor do atum", "quanto custa o combinado", "preço do temaki", "valores dos pratos", "tabela de preços", "quanto fica", "qual o valor", "preços", "custam", "valor yakissoba", "preço udon",
+        "orçamento", "budget", "grana", "dinheiro", "custo", "investimento", "gasto", "despesa", "conta", "fatura", "ticket", "nota", "precificação", "cotação",
+        "barato", "caro", "em conta", "acessível", "promocional", "desconto", "oferta", "promoção", "pechincha", "liquidação", "queima", "black friday",
+        "forma de pagamento", "cartão", "dinheiro", "pix", "débito", "crédito", "parcelado", "à vista", "prazo", "financiamento", "entrada", "parcelas",
+        
+        "tá quanto", "sai quanto", "fica quanto", "dá quanto", "rola quanto", "varia quanto", "oscila quanto", "muda quanto",
+        "cobram quanto", "pedem quanto", "sacanagem quanto", "exploração quanto", "absurdo quanto", "justo quanto",
+        "vale quanto", "compensa quanto", "justifica quanto", "merece quanto", "equivale quanto", "corresponde quanto",
+        "pago quanto", "desembolso quanto", "invisto quanto", "gasto quanto", "economizo quanto", "poupo quanto",
+        
+        "preço justo", "valor justo", "preço honesto", "valor honesto", "preço real", "valor real", "preço verdadeiro",
+        "custo real", "custo efetivo", "custo total", "valor final", "preço final", "conta final", "total final",
+        "preço promocional", "valor promocional", "preço especial", "valor especial", "oferta especial", "desconto especial",
+        "preço de atacado", "valor atacado", "preço grosso", "valor grosso", "preço família", "valor família",
+        
+        "tabelinha", "tabelão", "lista de preços", "cardápio de preços", "menu de valores", "relação de preços",
+        "cotação atual", "preço atual", "valor atual", "preço corrente", "valor corrente", "preço vigente",
+        "preço médio", "valor médio", "custo médio", "preço aproximado", "valor aproximado", "mais ou menos quanto",
+        
+        "baratinho", "baratão", "barato mesmo", "preço bom", "preço bacana", "preço camarada", "preço amigo",
+        "carinho", "carão", "salgado", "salgadinho", "caro demais", "muito caro", "absurdamente caro", "caríssimo",
+        "acessível", "em conta", "na faixa", "cabível", "razoável", "aceitável", "dentro do orçamento",
+        "fora do orçamento", "acima do orçamento", "estourou o orçamento", "não cabe no bolso", "pesado pro bolso",
+        
+        "quanto tá", "quanto está", "como tá", "como está", "tá por quanto", "está por quanto", "anda por quanto",
+        "quanto sai", "quanto fica", "quanto dá", "quanto vai", "quanto vai ser", "quanto vai ficar",
+        "me fala quanto", "me diz quanto", "conta quanto", "fala quanto", "diz quanto",
+        
+        "dinheirinho", "graninha", "bufunfa", "tutu", "michê", "dindim", "cascalho", "verdinha", "nota",
+        "investimentozinho", "gastinho", "despesinha", "custozinho", "precinho", "valorzinho",
+        "orçamentinho", "budgetzinho", "continha", "faturinha", "ticketzinho", "notinha",
+        
+        "pagamento facilitado", "facilita pagamento", "condições pagamento", "modalidades pagamento", "opções pagamento",
+        "parcelamento", "parcelado", "parcelas", "prestações", "a prazo", "financiado", "crediário",
+        "à vista", "vista", "dinheiro vivo", "cash", "money", "grana na mão", "pagamento imediato",
+        "cartão de crédito", "crédito", "visa", "master", "mastercard", "elo", "american express", "amex",
+        "cartão de débito", "débito", "conta corrente", "poupança", "transferência", "ted", "doc",
+        "pix", "pixzinho", "transferência instantânea", "qr code", "código pix", "chave pix",
+        
+        "taxa", "tarifa", "acréscimo", "adicional", "extra", "sobretaxa", "multa", "juros", "correção",
+        "desconto", "abatimento", "redução", "diminuição", "promoção", "oferta", "queima", "liquidação",
+        "cupom", "voucher", "vale", "código", "cashback", "devolução", "reembolso", "pontos", "milhas",
+        
+        "compensa", "vale a pena", "compensativo", "vantajoso", "lucrativo", "rentável", "proveitoso",
+        "não compensa", "não vale", "desvantajoso", "prejuízo", "perda", "desperdício", "gastança",
+        "custo benefício", "custo x benefício", "relação preço qualidade", "vale pelo preço", "preço qualidade",
+        
+        "caro pro que oferece", "caro demais", "muito caro", "caríssimo", "absurdo de caro", "preço nas alturas",
+        "barato pro que oferece", "barato demais", "muito barato", "baratíssimo", "quase de graça", "preço baixo"
+      ],
+      "responses": [
+        "Nossos preços são:\n\n🍣 SUSHIS (8 peças):\n• Salmão: R$ 18,00\n• Atum: R$ 20,00\n• Kani: R$ 15,00\n• Philadelphia: R$ 25,00\n\n🍙 TEMAKIS:\n• Salmão Grelhado: R$ 22,00\n• Hot Philadelphia: R$ 28,00\n• Califórnia: R$ 24,00\n• Atum Spicy: R$ 26,00\n\n🍜 PRATOS QUENTES:\n• Yakissoba: R$ 35,00\n• Udon: R$ 32,00\n• Teriyaki: R$ 38,00\n\n🍱 COMBINADOS:\n• Combo Salmão: R$ 65,00\n• Combo Misto: R$ 85,00\n• Combo Família: R$ 120,00",
+        "Os preços variam de R$ 15,00 a R$ 120,00. Qual prato específico você gostaria de saber o preço?",
+        "Temos preços justos! O mais barato é o Sushi de Kani por R$ 15,00 e nosso Combo Família por R$ 120,00 serve até 4 pessoas.",
+        "Valores: Sushis R$ 15-25, Temakis R$ 22-28, Pratos Quentes R$ 32-38, Combinados R$ 65-120. Todos com ingredientes premium!",
+        "Nossos preços são competitivos! Aceitamos dinheiro, cartão de débito/crédito e PIX. Qual forma de pagamento prefere?",
+        "Temos opções para todos os bolsos! Desde o sushi individual até combo família. Quer montar algo dentro do seu orçamento?",
+        "Preços honestos com qualidade garantida! Também temos promoções especiais durante a semana. Posso te contar sobre elas?",
+        "Investimento que vale a pena! Ingredientes frescos, preparo artesanal e sabor autêntico. Qual seu budget para hoje?"
+      ]
+    },    {
+      "tag": "tempo_entrega",
+      "patterns": [
+        "quanto tempo para entregar", "demora quanto", "tempo de entrega", "quando chega", "em quanto tempo fica pronto", "prazo de entrega", "quanto tempo demora", "quando vai chegar", "tempo para fazer", "demora muito", "é rápido", "entrega em quanto tempo", "qual o prazo", "tempo de preparo", "quando fica pronto", "entrega",
+        "delivery", "rapidez", "agilidade", "velocidade", "pressa", "urgência", "emergência", "rápido", "devagar", "lento", "demorado", "demora", "espera", "aguardo",
+        "cronômetro", "relógio", "horário", "agenda", "compromisso", "reunião", "pressa", "correria", "rush", "time", "deadline", "limite", "prazo final",
+        "hoje", "agora", "já", "imediatamente", "na hora", "instantâneo", "express", "turbo", "flash", "speed", "jet", "ultra",
+        
+        "quantos minutos", "quantas horas", "quanto tempo leva", "leva quanto tempo", "demora quantos minutos", "demora quantas horas",
+        "tempo estimado", "previsão de entrega", "estimativa tempo", "aproximadamente quanto tempo", "mais ou menos quanto tempo",
+        "tempo médio", "tempo normal", "tempo usual", "tempo padrão", "tempo típico", "tempo comum", "tempo regular",
+        "tempo mínimo", "tempo máximo", "no mínimo quanto", "no máximo quanto", "entre quanto e quanto", "varia entre",
+        
+        "tô com pressa", "to com pressa", "preciso urgente", "preciso rápido", "necessito urgente", "quero rápido",
+        "sem pressa", "sem urgência", "tranquilo", "calma", "sossegado", "no meu tempo", "quando der",
+        "tenho tempo", "posso esperar", "não tenho pressa", "aguardo tranquilo", "sem problema esperar",
+        
+        "delivery rápido", "entrega rápida", "entrega express", "entrega urgente", "entrega imediata", "entrega na hora",
+        "delivery normal", "entrega normal", "entrega padrão", "entrega comum", "entrega regular", "entrega tradicional",
+        "delivery demorado", "entrega demorada", "entrega lenta", "entrega devagar", "demora na entrega", "atraso entrega",
+        
+        "horário chegada", "que horas chega", "vai chegar que horas", "estimativa chegada", "previsão chegada",
+        "sai quando", "parte quando", "saindo quando", "vai sair quando", "motoboy sai quando", "entregador parte quando",
+        "tá a caminho", "já saiu", "já partiu", "já foi", "em trânsito", "viajando", "andamento", "em deslocamento",
+        
+        "fila", "sequência", "ordem", "vez", "posição", "lugar na fila", "quantos na frente", "anterior a mim",
+        "primeiro", "próximo", "seguinte", "último", "urgente", "prioridade", "prioritário", "preferencial",
+        "ordem chegada", "primeiro que chega", "primeiro atendido", "fifo", "sequencial", "cronológica",
+        
+        "fim de semana", "sábado", "domingo", "feriado", "véspera", "noite", "madrugada", "tarde", "manhã",
+        "rush", "pico", "movimento", "correria", "demanda alta", "muito pedido", "sobrecarregado", "lotado",
+        "tranquilo", "calmo", "pouco movimento", "vazio", "sossegado", "sem correria", "normal", "regular",
+        
+        "distância", "longe", "perto", "próximo", "distante", "quilômetros", "km", "metros", "quadras",
+        "bairro", "região", "zona", "área", "localidade", "proximidade", "vizinhança", "redondeza",
+        "trânsito", "congestionamento", "engarrafamento", "tráfego", "fluxo", "movimento", "via", "rua",
+        
+        "chuva", "sol", "tempo", "clima", "condição climática", "tempestade", "ventania", "neblina", "garoa",
+        "influencia", "afeta", "atrapalha", "prejudica", "melhora", "piora", "interfere", "impacta",
+        "normal mesmo assim", "independente do tempo", "não afeta", "sempre igual", "mantém padrão",
+        
+        "motoboy", "entregador", "delivery boy", "motociclista", "piloto", "condutor", "operador", "funcionário",
+        "aplicativo", "app", "sistema", "plataforma", "ifood", "uber eats", "rappi", "próprio", "casa",
+        "rastreamento", "tracking", "acompanhar", "localizar", "GPS", "posição", "onde está", "localização",
+        
+        "cancelar", "desistir", "mudar ideia", "não quero mais", "esquece", "deixa pra lá", "abortar",
+        "adiantar", "antecipar", "acelerar", "apressar", "rush", "prioritário", "urgente", "emergencial",
+        "atrasar", "postergar", "adiar", "deixar mais tarde", "sem pressa", "quando puder", "tranquilo"
+      ],
+      "responses": [
+        "O tempo de entrega é de 40 a 60 minutos, pois preparamos tudo fresco na hora!",
+        "Preparamos seus sushis com técnica tradicional em cerca de 45-60 minutos. A qualidade vale a espera!",
+        "Nossa entrega é cuidadosa! Entre 40 a 60 minutos seus pratos japoneses frescos estarão aí.",
+        "O prazo de entrega é de aproximadamente 50 minutos. Nosso sushiman prepara tudo com perfeição!",
+        "Demora entre 40-60 minutos porque fazemos tudo na hora! Sushi fresco não pode ser apressado.",
+        "Tempo médio: 50 minutos. Inclui preparo artesanal + tempo de entrega. Vale cada minuto de espera!",
+        "Entre 40-60 min dependendo da distância. Priorizamos a qualidade sobre a velocidade!",
+        "Cerca de 1 hora. Nosso chef não corta caminho na qualidade! Fresquinho chegando aí."
+      ]
+    },
+    {
+      "tag": "agradecimento",      "patterns": [
+        "obrigado", "obrigada", "valeu", "obrigadão", "brigado", "muito obrigado", "agradecido", "thanks", "vlw", "valeu mesmo", "obrigado pela ajuda", "muito grato", "agradeço", "obrigadíssimo", "obrigado pelo atendimento", "brigadão", "arigato", "domo arigato",
+        "thank you", "merci", "gracias", "danke", "grazie", "spasibo", "xie xie", "dhanyawad", "shukran", "toda", "asante", "salamat",
+        "perfeito", "excelente", "ótimo", "maravilhoso", "fantástico", "sensacional", "top", "show", "legal", "bacana", "massa", "demais",
+        "satisfeito", "contente", "feliz", "alegre", "grato", "reconhecido", "tocado", "emocionado",
+        
+        "brigadão mesmo", "muito obrigado mesmo", "obrigadíssimo mesmo", "extremamente grato", "profundamente agradecido",
+        "thanks a lot", "thank you so much", "thank you very much", "muchas gracias", "merci beaucoup", "vielen dank",
+        "te agradeço", "agradeço muito", "sou grato", "fico grato", "minha gratidão", "reconhecimento",
+        "valeu demais", "valeu muito", "valeu a pena", "valeu mesmo cara", "valeu brother", "vlw mto",
+        
+        "você é demais", "você é show", "você é top", "você é incrível", "você é o máximo", "você manda bem",
+        "atendimento perfeito", "atendimento excelente", "atendimento nota 10", "atendimento top", "muito bem atendido",
+        "parabéns", "parabéns pelo serviço", "parabéns pela qualidade", "meus parabéns", "congratulations",
+        
+        "adorei", "amei", "curti", "gostei muito", "aprovei", "recomendo", "indico", "sugiro",
+        "ficou perfeito", "ficou ótimo", "ficou show", "ficou massa", "ficou legal", "ficou bacana",
+        "superou expectativas", "melhor que esperava", "além do esperado", "surpreendeu", "impressionante",
+        
+        "muito bom", "muito bom mesmo", "bom demais", "bom pra caramba", "bomzão", "excelente qualidade",
+        "maravilhoso", "fantástico", "sensacional", "espetacular", "fenomenal", "extraordinário",
+        "incrível", "inacreditável", "surreal", "absurdo de bom", "fora de série", "excepcional",
+        
+        "satisfeito total", "100% satisfeito", "plenamente satisfeito", "totalmente satisfeito", "completamente satisfeito",
+        "feliz com resultado", "feliz com atendimento", "feliz com produto", "alegre com serviço",
+        "contente demais", "contentíssimo", "radiante", "eufórico", "empolgado", "animado",
+        
+        "recomendo muito", "indico fortemente", "super recomendo", "recomendo de olhos fechados", "recomendo 100%",
+        "voltarei sempre", "cliente fiel", "vou voltar", "retornarei", "serei cliente", "fidelizado",
+        "nota 10", "nota máxima", "5 estrelas", "cinco estrelas", "aprovação total", "conceito A",
+        
+        "sucesso", "sucesso total", "arrasaram", "mandaram bem", "capricharam", "se superaram",
+        "trabalho perfeito", "serviço impecável", "qualidade superior", "nível profissional", "padrão elevado",
+        "equipe nota 10", "time excelente", "profissionais competentes", "pessoal capacitado",
+        
+        "gratidão eterna", "gratidão profunda", "eternamente grato", "para sempre agradecido",
+        "deus abençoe", "que deus abençoe", "muitas bênçãos", "prosperidade", "sucesso pra vocês",
+        "karma positivo", "energia boa", "vibrações positivas", "luz e paz", "tudo de bom",
+        
+        "humildade", "com toda humildade", "humildemente agradeço", "modestamente obrigado",
+        "sinceramente", "sincero agradecimento", "do fundo do coração", "de coração", "heartfelt thanks",
+        "emocionado", "tocado", "comovido", "sensibilizado", "mexeu comigo", "me emocionou",
+        
+        "show de bola", "da hora", "maneiro", "irado", "sinistro", "brabo", "top das galáxias",
+        "arrebentaram", "destruíram", "mataram", "acabaram", "mandaram ver", "foram demais",
+        "lacrou", "mitou", "brilhou", "se destacou", "sobressaiu", "chamou atenção"
+      ],
+      "responses": [
+        "Dōitashimashite! Foi um prazer ajudar. Volte sempre ao Will Japanese Restaurant!",
+        "Fico feliz em ajudar! Esperamos você novamente para mais delícias japonesas em breve.",
+        "Por nada! Obrigado por escolher nosso restaurante japonês. Mata ne! (Até logo!)",
+        "Sempre às ordens! Que seus pratos japoneses sejam oishii (deliciosos)!",
+        "Que bom que pude ajudar! Sua satisfação é nossa maior recompensa!",
+        "Foi um prazer! Conte sempre conosco para suas experiências gastronômicas japonesas!",
+        "Disponha sempre! Estamos aqui para tornar sua refeição especial!",
+        "Muito obrigado pela confiança! Até a próxima visita ao nosso restaurante!"
+      ]
+    },
+    {
+      "tag": "reclamacao",      "patterns": [
+        "sushi veio frio", "demorou muito", "atendimento ruim", "reclamar", "pedido veio errado", "não gostei", "problema com pedido", "sushi mal feito", "insatisfeito", "sushi sem sabor", "muito salgado", "entrega atrasada", "motoboy mal educado", "sushi mole", "não era o que pedi", "reclamação", "problema", "ruim", "arroz grudento", "peixe sem qualidade",
+        "horrível", "péssimo", "terrível", "inaceitável", "inadmissível", "revoltante", "absurdo", "ridículo", "lamentável", "vergonhoso", "desastroso", "catastrófico",
+        "erro", "falha", "defeito", "bug", "glitch", "equívoco", "engano", "confusão", "bagunça", "zona", "caos", "desorganização",
+        "cancelar", "devolver", "estornar", "reembolso", "troca", "substituir", "refazer", "corrigir", "consertar", "resolver", "solucionar",
+        
+        "não prestou", "uma bosta", "uma merda", "lixo", "porcaria", "nojento", "asqueroso", "repugnante",
+        "decepcionado", "decepcionante", "frustrante", "chateado", "irritado", "nervoso", "puto", "bravo",
+        "enjoativo", "sem gosto", "insípido", "sem tempero", "sem sal", "sem graça", "sem vida",
+        "velho", "requentado", "estragado", "passado", "azedo", "com gosto estranho", "sabor esquisito",
+        
+        "entregador grosso", "motoboy ignorante", "delivery péssimo", "entrega horrível", "chegou frio",
+        "demorou demais", "atrasou muito", "não chegou", "perderam meu pedido", "esqueceram",
+        "veio errado", "não era isso", "diferente do pedido", "trocaram", "confundiram",
+        
+        "arroz duro", "arroz empapado", "peixe ruim", "peixe com cheiro", "wasabi vencido", "nori velha",
+        "mal embalado", "vazou", "derramou", "amassado", "quebrado", "desfeito",
+        "quantidade pequena", "pouco", "mini", "minúsculo", "não vale o preço", "caro demais",
+        
+        "primeira e última vez", "nunca mais", "não recomendo", "péssima experiência", "experiência horrível",
+        "vou processar", "vou no procon", "vou reclamar", "vou denunciar", "vou na vigilância sanitária",
+        "quero meu dinheiro de volta", "quero reembolso", "devolve meu dinheiro", "estorno",
+        
+        "nota zero", "uma estrela", "avaliação negativa", "review ruim", "feedback negativo",
+        "não tem qualidade", "sem padrão", "amador", "não profissional", "desleixado",
+        "higiene ruim", "sujo", "mal conservado", "duvidoso", "suspeito", "contaminado"
+      ],
+      "responses": [
+        "Gomen nasai! (Desculpe!) Lamentamos muito pelo inconveniente. Por favor, nos conte mais detalhes para resolvermos rapidamente.",
+        "Pedimos sinceras desculpas pela experiência ruim. Entre em contato conosco para resolvermos essa situação imediatamente.",
+        "Sumimasen! (Desculpe!) Vamos investigar o que aconteceu e garantir que isso não se repita. Sua satisfação é nossa prioridade.",
+        "Suas observações são muito importantes para mantermos a qualidade japonesa. Vamos melhorar nosso serviço!",
+        "Sinto muito mesmo! Isso não condiz com nosso padrão de qualidade. Podemos refazer seu pedido sem custo?",
+        "Que situação chata! Vamos resolver isso agora mesmo. Me passa mais detalhes para eu encaminhar para o gerente?",
+        "Desculpa total! Nossa equipe vai revisar todo o processo. Posso oferecer uma compensação pelo transtorno?",
+        "Não esperava isso do nosso restaurante! Vamos tomar providências imediatas. Como posso reparar isso?"
+      ]
+    },    {
+      "tag": "despedida",
+      "patterns": [
+        "tchau", "até logo", "bye", "falou", "até mais", "tenho que ir", "vou indo", "até a próxima", "adeus", "nos vemos", "até breve", "flw", "até", "xau", "vou desligar", "até outra hora", "fui", "sayonara", "mata ne",
+        "goodbye", "farewell", "see you", "catch you later", "talk to you later", "ttyl", "ciao", "au revoir", "auf wiedersehen", "hasta luego", "arrivederci", "do svidaniya",
+        "obrigado e tchau", "valeu, falou", "brigadão, até", "thanks, bye", "muito obrigado, até logo", "beleza, tchau", "show, falou", "perfeito, até mais",
+        
+        "me despedindo", "vou me despedir", "hora de ir", "preciso ir", "tenho que sair", "vou embora", "indo embora",
+        "até mais ver", "até uma próxima", "até depois", "nos falamos", "a gente se fala", "conversamos depois",
+        "tô vazando", "tô indo", "tô saindo", "vou nessa", "vou embora", "partindo", "me mandando", "caindo fora",
+        "tmj", "junto sempre", "até outra", "outro dia", "próxima vez", "nos vemos em breve", "soon", "later",
+        
+        "encerro aqui", "finalizando", "terminando", "concluindo", "fechando", "acabando por aqui",
+        "foi um prazer", "prazer conversar", "gostei de falar", "boa conversa", "nice chat", "good talk",
+        "valeu pela ajuda", "obrigado pela atenção", "thanks for help", "grateful", "appreciated",
+        
+        "vou descansar", "indo dormir", "hora do sono", "soneca", "cochilo", "bed time", "sleep time",
+        "compromisso", "reunião", "trabalho", "estudar", "responsabilidades", "afazeres", "tarefas",
+        "família", "namorada", "namorado", "esposa", "marido", "filhos", "pais", "amigos", "pessoal",
+        
+        "já volto", "volto já", "até daqui a pouco", "return soon", "be right back", "brb", "back later",
+        "até nunca", "never again", "fim", "acabou", "finished", "over", "done", "finito", "kaput",
+        "foi bom", "foi legal", "foi massa", "foi show", "curtir", "aproveitei", "gostei muito",
+        
+        "sucesso aí", "success", "boa sorte", "good luck", "tudo de bom", "felicidade", "prosperidade",
+        "se cuida", "take care", "cuidado", "vai com deus", "god bless", "blessing", "proteção",
+        "abraço", "hug", "beijo", "kiss", "carinho", "amor", "paz", "peace", "light", "energia boa",
+        
+        "japonês", "arigato sayonara", "domo arigato", "mata ashita", "mata atode", "itte kimasu",
+        "oyasumi", "oyasumi nasai", "konbanwa sayonara", "gomen sayonara", "sumimasen sayonara",
+        "japanese goodbye", "japan bye", "nippon farewell", "oriental goodbye", "asian farewell",
+        
+        "delivery", "entrega", "aguardo", "esperando", "wait", "waiting", "standby", "hold on",
+        "pedido", "order", "request", "compra", "purchase", "buy", "shopping", "meal", "food",
+        "satisfied", "satisfeito", "happy", "feliz", "content", "pleased", "glad", "grateful"
+      ],
+      "responses": [
+        "Sayonara! Obrigado por visitar o Will Japanese Restaurant. Mata ne! (Até logo!)",
+        "Mata ne! Esperamos você novamente para mais delícias japonesas!",
+        "Até mais! Foi ótimo conversar com você. Itadakimasu! (Bom apetite!)",
+        "Sayonara! Que tenha um excelente dia e volte sempre!",
+        "Tchau! Foi um prazer atendê-lo! Até a próxima refeição japonesa!",
+        "Até logo! Que sua experiência seja oishii! (deliciosa!)",
+        "Falou! Esperamos você de volta em breve! Arigato!",
+        "Bye bye! Tenha um ótimo resto do dia! Mata ashita! (Até amanhã!)"
+      ]
+    },
+    {
+      "tag": "localizacao",
+      "patterns": [
+        "onde fica", "endereço", "localização", "como chegar", "onde vocês estão", "local", "lugar", "posição", "região", "bairro", "rua", "avenida", "número",
+        "gps", "maps", "waze", "google maps", "coordenadas", "cep", "código postal", "referência", "ponto de referência", "próximo de que", "perto de",
+        "distância", "longe", "perto", "pertinho", "do lado", "vizinho", "em frente", "atrás", "ao lado", "esquina"
+      ],
+      "responses": [
+        "Estamos localizados na Rua dos Samurais, 123 - Bairro Liberdade, São Paulo/SP. CEP: 01503-020",
+        "Nosso endereço é Rua dos Samurais, 123 - Liberdade. Bem no coração do bairro japonês!",
+        "Ficamos na Liberdade! Rua dos Samurais, 123. Fácil de chegar de metrô ou carro!",
+        "Endereço: Rua dos Samurais, 123 - Liberdade/SP. Próximo à estação Liberdade do metrô!",
+        "Estamos no centro da Liberdade! Rua dos Samurais, 123. Tem estacionamento na região!",
+        "Localização privilegiada na Liberdade! Rua dos Samurais, 123. Cerca de 200m do metrô!"
+      ]
+    },
+    {
+      "tag": "horario_funcionamento",
+      "patterns": [
+        "horário", "que horas", "funcionamento", "aberto", "fechado", "abre", "fecha", "funciona", "atendimento", "expediente",
+        "domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado", "final de semana", "feriado", "véspera",
+        "manhã", "tarde", "noite", "madrugada", "almoço", "jantar", "lanche", "café da manhã"
+      ],
+      "responses": [
+        "Funcionamos de Segunda a Quinta das 18h às 23h30, Sexta e Sábado das 18h à 00h30, e Domingo das 18h às 22h30!",
+        "Nosso horário é: Seg-Qui: 18h-23h30 | Sex-Sáb: 18h-00h30 | Dom: 18h-22h30",
+        "Estamos abertos todas as noites! Segunda a quinta até 23h30, fim de semana até mais tarde!",
+        "Horário de funcionamento: Abrimos sempre às 18h. Fechamento varia: 22h30 (dom), 23h30 (seg-qui), 00h30 (sex-sáb)!",
+        "Funcionamos no período noturno! Das 18h em diante todos os dias. Finais de semana ficamos até mais tarde!"
+      ]
+    },
+    {
+      "tag": "ingredientes_qualidade",
+      "patterns": [
+        "ingredientes", "qualidade", "fresco", "origem", "procedência", "de onde vem", "importado", "nacional", "orgânico", "natural",
+        "peixe", "salmão", "atum", "arroz", "alga", "nori", "wasabi", "shoyu", "gengibre", "cream cheese", "abacate", "pepino",
+        "alérgico", "alergia", "intolerância", "glúten", "lactose", "frutos do mar", "conservantes", "corantes", "aditivos",
+        "certificação", "anvisa", "vigilância sanitária", "selo", "garantia", "procedência", "rastreabilidade"
+      ],
+      "responses": [
+        "Trabalhamos apenas com ingredientes premium! Salmão fresco do Chile, atum importado, arroz japonês especial e nori de primeira qualidade!",
+        "Nossos peixes chegam frescos diariamente! Salmão chileno, atum yellowfin, todos com certificação sanitária e rastreabilidade completa!",
+        "Qualidade é nossa prioridade! Ingredientes selecionados: cream cheese Philadelphia original, wasabi importado, shoyu tradicional!",
+        "Temos certificações de qualidade! Todos os peixes passam por rigorosa inspeção. Arroz japonês premium e temperos autênticos!",
+        "100% frescos! Recebemos peixes toda manhã do CEAGESP. Temos opções para alérgicos e intolerantes também!",
+        "Ingredientes rastreados e certificados! Trabalhamos com fornecedores licenciados pela ANVISA. Qualidade garantida!"
+      ]
+    },
+    {
+      "tag": "promocoes_ofertas",
+      "patterns": [
+        "promoção", "oferta", "desconto", "cupom", "voucher", "deal", "black friday", "liquidação", "queima", "pechincha",
+        "barato", "em conta", "mais barato", "preço especial", "valor promocional", "combo promocional", "kit promoção",
+        "segunda", "terça", "quarta", "quinta", "sexta", "sábado", "domingo", "hoje", "essa semana", "esse mês",
+        "aniversário", "inauguração", "festa", "comemoração", "celebração", "especial", "limitado", "exclusivo"
+      ],
+      "responses": [
+        "Temos promoções especiais! Terça-feira: 20% off em combos. Quinta-feira: Compre 2 temakis e ganhe 1 sushi!",
+        "Ofertas da semana: Segunda é dia do sushi (15% off), Quarta é combo família com desconto especial!",
+        "Promoção permanente: Acima de R$ 80 ganhe entrega grátis! E sempre temos surpresas para clientes fiéis!",
+        "Black Friday japonesa! Durante novembro: 25% off em pedidos acima de R$ 100. Não perca!",
+        "Happy Hour: Das 18h às 20h, todos os temakis com 10% de desconto! Válido de segunda a quinta!",
+        "Programa de fidelidade: A cada 10 pedidos, ganhe 1 combo grátis! Cadastre-se e economize!"
+      ]
+    },
+    {
+      "tag": "informacoes_nutricionais",
+      "patterns": [
+        "calorias", "calórico", "diet", "light", "fitness", "saudável", "saúde", "nutrição", "nutricional", "proteína", "carboidrato", "gordura",
+        "vegano", "vegetariano", "sem glúten", "sem lactose", "diabético", "hipertensão", "colesterol", "triglicérides",
+        "regime", "dieta", "emagrecer", "engordar", "massa muscular", "academia", "treino", "atleta", "esportista",
+        "vitamina", "mineral", "fibra", "ômega", "antioxidante", "natural", "orgânico", "integral"
+      ],
+      "responses": [
+        "Nossos sushis são super saudáveis! Rico em ômega-3, proteínas de alta qualidade e baixo em calorias. Perfeito para dietas!",
+        "Temos opções fit! Sushis sem arroz (sashimi), temakis com pepino no lugar do arroz, e pratos com baixo sódio!",
+        "Cardápio inclusivo! Opções veganas (pepino, abacate), sem glúten e sem lactose. Sempre identificadas no menu!",
+        "Informações nutricionais disponíveis! Sushi de salmão: ~40 kcal/peça. Combos com valores detalhados na entrega!",
+        "Alimentação balanceada! Peixes ricos em proteína magra, arroz integral disponível, vegetais frescos em todos os pratos!",
+        "Para atletas e fitness! Alto valor proteico, carboidratos de qualidade, gorduras boas. Ideal pós-treino!"
+      ]
+    },
+    {
+      "tag": "curiosidades_cultura",
+      "patterns": [
+        "japão", "japonês", "cultura", "tradição", "história", "origem", "tokyo", "tóquio", "osaka", "kyoto",
+        "samurai", "ninja", "geisha", "anime", "manga", "zen", "budismo", "xintoísmo", "ikebana", "origami",
+        "sushi", "sashimi", "tempura", "ramen", "miso", "sake", "wasabi", "soja", "nori", "chopsticks", "hashi",
+        "itadakimasu", "gochisousama", "kanpai", "arigato", "sayonara", "konnichiwa", "sumimasen", "gomen",
+        "curiosidade", "interessante", "legal", "bacana", "diferente", "único", "especial", "tradicional"
+      ],
+      "responses": [
+        "Curiosidade: O sushi surgiu como método de conservação do peixe! O arroz fermentado preservava o pescado por meses!",
+        "Sabia que wasabi verdadeiro é caríssimo? A maioria dos restaurantes usa raiz forte tingida de verde!",
+        "Tradição japonesa: Antes de comer, dizemos 'Itadakimasu' (eu recebo humildemente) e após 'Gochisousama' (obrigado pela refeição)!",
+        "No Japão, é comum comer sushi com as mãos! E nunca se mistura wasabi no shoyu - isso é desrespeitoso!",
+        "O peixe para sushi deve estar a -20°C por 7 dias para eliminar parasitas. Segurança em primeiro lugar!",
+        "Sushi master leva 10 anos para se formar! Começam lavando arroz por anos antes de tocar no peixe!"
+      ]
+    },
+    {
+      "tag": "forma_pagamento",
+      "patterns": [
+        "pagamento", "pagar", "cartão", "dinheiro", "pix", "débito", "crédito", "parcelado", "à vista", "entrada",
+        "visa", "mastercard", "elo", "amex", "american express", "diners", "hipercard", "ticket", "sodexo", "alelo",
+        "vale", "voucher", "cupom", "desconto", "cashback", "pontos", "milhas", "fidelidade", "programa",
+        "troco", "trocado", "nota", "moeda", "real", "reais", "centavos", "valor", "quantia"
+      ],
+      "responses": [
+        "Aceitamos todas as formas de pagamento! Dinheiro, PIX, cartão de débito/crédito (Visa, Master, Elo) e vale refeição!",
+        "Formas de pagamento: PIX (desconto de 5%), cartões (parcelamos até 3x sem juros), dinheiro e vale alimentação!",
+        "PIX é mais rápido e tem desconto! Também aceitamos cartões das principais bandeiras e vale refeição/alimentação!",
+        "Pagamento facilitado! PIX instantâneo, cartões com chip ou aproximação, e sempre temos troco se precisar!",
+        "Aceitos: PIX, débito, crédito, dinheiro, Ticket, Sodexo, Alelo. Parcelamento sem juros para compras acima de R$ 50!"
+      ]
+    },
+    {
+      "tag": "eventos_grupos",
+      "patterns": [
+        "festa", "evento", "aniversário", "casamento", "formatura", "confraternização", "reunião", "encontro", "celebração",
+        "grupo", "turma", "galera", "pessoal", "família", "amigos", "colegas", "equipe", "time", "empresa",
+        "reserva", "reservar", "mesa", "espaço", "local", "salão", "ambiente", "decoração", "organizar",
+        "catering", "buffet", "delivery", "entrega", "encomenda", "antecedência", "planejamento", "orçamento"
+      ],
+      "responses": [
+        "Organizamos eventos especiais! Temos combos para grupos, delivery para festas e até decoração temática japonesa!",
+        "Perfeito para confraternizações! Combos família servem bem grupos grandes, e fazemos orçamentos personalizados!",
+        "Eventos corporativos são nossa especialidade! Entrega pontual, embalagens especiais e cardápio executivo!",
+        "Festas de aniversário? Temos combos temáticos! Sushi cake, decoração japonesa e até aulas de como fazer sushi!",
+        "Para grupos grandes, fazemos preços especiais! Entre em contato com antecedência para planejamento completo!",
+        "Catering japonês! Levamos toda a experiência até seu evento. Chef, decoração e o melhor da culinária japonesa!"
+      ]
+    }
+  ]
+}
