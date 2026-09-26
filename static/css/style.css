@@ -1,0 +1,175 @@
+/* Will Japanese Restaurant: sumi (tinta), washi (papel) e shu (vermelhão) */
+:root {
+    --sumi: #17140F;
+    --sumi-2: #221E18;
+    --sumi-3: #2E2922;
+    --washi: #F6F0E6;
+    --washi-2: #EDE4D5;
+    --linha: #DCCFBB;
+    --texto: #2A241E;
+    --texto-2: #6B5F52;
+    --shu: #C8412B;
+    --shu-escuro: #A5321F;
+    --ouro: #C9A36B;
+    --verde: #5E9E6E;
+    --raio: 14px;
+    --serif: 'Shippori Mincho B1', 'Times New Roman', serif;
+    --sans: 'Zen Kaku Gothic New', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body { font-family: var(--sans); color: var(--texto); background: var(--washi); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+button { font: inherit; cursor: pointer; }
+.container { width: min(1160px, 100% - 48px); margin: 0 auto; }
+
+/* Botões */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1.5px solid transparent; border-radius: 999px; padding: 13px 24px; font-weight: 700; font-size: 15px; text-decoration: none; transition: background-color .15s, border-color .15s, color .15s; }
+.btn-sm { padding: 9px 18px; font-size: 14px; white-space: nowrap; }
+.btn-shu { background: var(--shu); color: #fff; }
+.btn-shu:hover { background: var(--shu-escuro); }
+.btn-linha { border-color: rgba(246, 240, 230, .35); color: var(--washi); }
+.btn-linha:hover { border-color: var(--washi); }
+
+/* Cabeçalho (fundo sólido, sem blur) */
+.topo { position: sticky; top: 0; z-index: 20; background: var(--sumi); border-bottom: 1px solid var(--sumi-3); }
+.topo-inner { display: flex; align-items: center; gap: 32px; height: 68px; }
+.marca { display: flex; align-items: center; gap: 12px; color: var(--washi); text-decoration: none; }
+.marca strong { display: block; font-family: var(--serif); font-size: 22px; font-weight: 800; letter-spacing: .5px; line-height: 1; }
+.marca small { display: block; font-size: 10.5px; letter-spacing: 2.4px; text-transform: uppercase; color: var(--ouro); margin-top: 4px; }
+.nav { display: flex; gap: 28px; margin-left: auto; }
+.nav a { color: #CFC5B6; text-decoration: none; font-size: 15px; }
+.nav a:hover { color: #fff; }
+
+/* Hero */
+.hero { background: var(--sumi); color: var(--washi); padding: 56px 0 64px; overflow: hidden; }
+.hero-inner { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; }
+.sobretitulo { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--ouro); font-weight: 700; margin-bottom: 14px; }
+.hero h1 { font-family: var(--serif); font-weight: 800; font-size: clamp(38px, 5vw, 60px); line-height: 1.12; letter-spacing: -.5px; }
+.lead { margin-top: 20px; font-size: 18px; color: #D8CEBF; max-width: 540px; }
+.hero-acoes { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+.fatos { list-style: none; display: flex; gap: 32px; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--sumi-3); flex-wrap: wrap; }
+.fatos strong { display: block; font-family: var(--serif); font-size: 20px; }
+.fatos span { font-size: 13px; color: #A99D8D; }
+.hero-arte img { width: 100%; height: auto; }
+
+/* Passos */
+.passos { background: var(--shu); color: #fff; }
+.passos-inner { display: grid; grid-template-columns: repeat(3, 1fr); }
+.passos-inner > div { display: flex; gap: 16px; align-items: flex-start; padding: 22px 24px; }
+.passos-inner > div + div { border-left: 1px solid rgba(255, 255, 255, .22); }
+.passos b { flex: none; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, .6); display: grid; place-items: center; font-family: var(--serif); font-size: 17px; }
+.passos p { font-size: 14px; color: #FBE3DC; }
+.passos strong { display: block; color: #fff; font-size: 16px; margin-bottom: 2px; }
+
+/* Seções */
+.secao { padding: 88px 0; }
+.secao-topo { text-align: center; margin-bottom: 44px; }
+.secao-topo .sobretitulo { color: var(--shu); }
+h2 { font-family: var(--serif); font-weight: 800; font-size: clamp(30px, 3.6vw, 42px); line-height: 1.2; color: var(--sumi); }
+.secao-topo p:last-child { margin-top: 10px; color: var(--texto-2); }
+
+/* Cardápio */
+.cardapio { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.categoria { background: #FFFCF6; border: 1px solid var(--linha); border-radius: var(--raio); padding: 22px 18px 12px; }
+.categoria > header { display: flex; align-items: center; gap: 14px; padding: 0 6px 16px; border-bottom: 2px solid var(--sumi); }
+.categoria h3 { font-family: var(--serif); font-size: 22px; color: var(--sumi); line-height: 1.1; }
+.categoria header span { font-size: 13px; color: var(--texto-2); }
+.categoria ul { list-style: none; }
+.prato { width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px dashed var(--linha); padding: 14px 6px; display: grid; grid-template-columns: auto 1fr auto; column-gap: 8px; align-items: baseline; color: inherit; border-radius: 8px; transition: background-color .15s; }
+.categoria li:last-child .prato { border-bottom: 0; }
+.prato:hover, .prato:focus-visible { background: var(--washi-2); outline: none; }
+.prato-nome { font-weight: 700; font-size: 15px; }
+.prato-linha { border-bottom: 1.5px dotted #B9AA93; transform: translateY(-4px); }
+.prato-preco { font-family: var(--serif); font-weight: 800; color: var(--shu); font-size: 16px; white-space: nowrap; }
+.prato-desc { grid-column: 1 / -1; font-size: 13px; color: var(--texto-2); margin-top: 2px; }
+
+/* A casa */
+.secao-tinta { background: var(--sumi-2); color: var(--washi); }
+.secao-tinta h2 { color: var(--washi); }
+.casa { display: grid; grid-template-columns: 1.3fr 1fr; gap: 64px; align-items: center; }
+.casa p { margin-top: 16px; color: #D2C8B8; font-size: 16.5px; }
+.numeros { display: grid; gap: 14px; }
+.numeros div { display: flex; align-items: center; gap: 20px; padding: 18px 22px; border: 1px solid var(--sumi-3); border-radius: var(--raio); background: var(--sumi); }
+.numeros dt { font-family: var(--serif); font-size: 40px; font-weight: 800; color: var(--ouro); min-width: 58px; line-height: 1; }
+.numeros dd { color: #D2C8B8; }
+
+/* Contato */
+.contato { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: start; }
+.contato .sobretitulo { color: var(--shu); }
+.contato-lista { list-style: none; margin: 24px 0 28px; }
+.contato-lista li { padding: 12px 0; border-bottom: 1px solid var(--linha); }
+.contato-lista span { display: block; font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--texto-2); font-weight: 700; }
+.horario { background: #FFFCF6; border: 1px solid var(--linha); border-radius: var(--raio); padding: 28px; }
+.horario h3 { font-family: var(--serif); font-size: 24px; color: var(--sumi); margin-bottom: 12px; }
+.horario dl div { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed var(--linha); }
+.horario dd { font-weight: 700; }
+.horario p { margin-top: 16px; font-size: 14px; color: var(--texto-2); }
+
+.rodape { background: var(--sumi); color: #A99D8D; padding: 28px 0; font-size: 14px; }
+.rodape-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.marca-clara strong { font-size: 18px; }
+
+/* Chat: painel leve, só opacity/transform na abertura */
+.chat { position: fixed; right: 24px; bottom: 24px; z-index: 50; }
+.chat-botao { width: 62px; height: 62px; border-radius: 50%; border: 0; background: var(--shu); color: #fff; display: grid; place-items: center; box-shadow: 0 6px 18px rgba(23, 20, 15, .28); transition: background-color .15s; }
+.chat-botao:hover { background: var(--shu-escuro); }
+.chat-botao .ic-fechar, .chat.aberto .chat-botao .ic-abrir { display: none; }
+.chat.aberto .chat-botao .ic-fechar { display: block; }
+.chat-painel { position: absolute; right: 0; bottom: 78px; width: 380px; height: min(580px, calc(100vh - 120px)); background: #FFFCF6; border: 1px solid var(--linha); border-radius: 18px; box-shadow: 0 18px 40px rgba(23, 20, 15, .22); display: flex; flex-direction: column; overflow: hidden; opacity: 0; transform: translateY(12px); pointer-events: none; visibility: hidden; transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s; }
+.chat.aberto .chat-painel { opacity: 1; transform: none; pointer-events: auto; visibility: visible; transition: opacity .18s ease, transform .18s ease; }
+.chat-topo { display: flex; align-items: center; gap: 12px; padding: 14px 14px 14px 16px; background: var(--sumi); color: var(--washi); }
+.chat-topo strong { display: block; font-size: 15px; }
+.chat-topo span { font-size: 12.5px; color: #B8AD9D; display: flex; align-items: center; gap: 6px; }
+.online { width: 8px; height: 8px; border-radius: 50%; background: var(--verde); display: inline-block; }
+.chat-fechar { margin-left: auto; background: none; border: 0; color: #CFC5B6; width: 36px; height: 36px; border-radius: 8px; display: grid; place-items: center; }
+.chat-fechar:hover { background: var(--sumi-3); color: #fff; }
+.chat-mensagens { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; background: var(--washi); overscroll-behavior: contain; }
+.msg { max-width: 86%; display: flex; flex-direction: column; gap: 5px; }
+.msg.bot { align-self: flex-start; }
+.msg.user { align-self: flex-end; align-items: flex-end; }
+.balao { padding: 10px 14px; border-radius: 14px; font-size: 14.5px; line-height: 1.5; overflow-wrap: anywhere; }
+.msg.bot .balao { background: #fff; border: 1px solid var(--linha); border-bottom-left-radius: 4px; }
+.msg.user .balao { background: var(--shu); color: #fff; border-bottom-right-radius: 4px; }
+.intencoes { display: flex; flex-wrap: wrap; gap: 5px; }
+.intencoes span { font-size: 11.5px; color: var(--texto-2); background: var(--washi-2); border-radius: 6px; padding: 2px 7px; }
+.intencoes b { font-weight: 700; color: var(--texto); margin-right: 4px; }
+.digitando .balao { display: flex; gap: 5px; padding: 14px 16px; }
+.digitando i { width: 7px; height: 7px; border-radius: 50%; background: #B9AA93; animation: pulo 1s infinite ease-in-out; }
+.digitando i:nth-child(2) { animation-delay: .15s; }
+.digitando i:nth-child(3) { animation-delay: .3s; }
+@keyframes pulo { 0%, 60%, 100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
+.chat-sugestoes { display: flex; gap: 6px; padding: 10px 12px; overflow-x: auto; border-top: 1px solid var(--linha); background: #FFFCF6; scrollbar-width: none; }
+.chat-sugestoes::-webkit-scrollbar { display: none; }
+.chat-sugestoes button { flex: none; background: #fff; border: 1px solid var(--linha); border-radius: 999px; padding: 6px 12px; font-size: 13px; color: var(--texto); }
+.chat-sugestoes button:hover { border-color: var(--shu); color: var(--shu); }
+.chat-form { display: flex; gap: 8px; padding: 10px 12px 12px; background: #FFFCF6; }
+.chat-form input { flex: 1; min-width: 0; border: 1px solid var(--linha); border-radius: 999px; padding: 11px 16px; font: inherit; font-size: 14.5px; background: #fff; color: var(--texto); }
+.chat-form input:focus { outline: 2px solid rgba(200, 65, 43, .35); border-color: var(--shu); }
+.chat-form button { width: 44px; height: 44px; flex: none; border-radius: 50%; border: 0; background: var(--sumi); color: #fff; display: grid; place-items: center; }
+.chat-form button:disabled { opacity: .5; cursor: default; }
+
+/* Responsivo */
+@media (max-width: 1020px) {
+    .cardapio { grid-template-columns: repeat(2, 1fr); }
+    .hero-inner, .casa, .contato { grid-template-columns: 1fr; }
+    .hero-arte { max-width: 520px; }
+}
+@media (max-width: 720px) {
+    .nav { display: none; }
+    .topo-inner { justify-content: space-between; }
+    .topo .marca small { display: none; }
+    .hero-arte { max-width: 360px; margin: 0 auto; }
+    .passos-inner { grid-template-columns: 1fr; }
+    .passos-inner > div + div { border-left: 0; border-top: 1px solid rgba(255, 255, 255, .22); }
+    .cardapio { grid-template-columns: 1fr; }
+    .secao { padding: 64px 0; }
+    .container { width: calc(100% - 32px); }
+    .chat { right: 16px; bottom: 16px; }
+    .chat-painel { position: fixed; left: 12px; right: 12px; bottom: 90px; width: auto; height: calc(100vh - 110px); }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .chat-painel, .digitando i { transition: none; animation: none; }
+}
