@@ -1,43 +1,52 @@
-from flask import Flask, request, jsonify, render_template
-from flask_cors import CORS
-from chatbot import chatbot
+import logging
 import os
 
+from flask import Flask, jsonify, render_template, request
+
+from chatbot import chatbot
+
 app = Flask(__name__)
-CORS(app)
+log = logging.getLogger(__name__)
+
 
 @app.route('/')
 def home():
     return render_template('home.html')
 
+
 @app.route('/chat', methods=['POST'])
 def chat():
+    data = request.get_json(silent=True) or {}
+    message = str(data.get('message', '')).strip()
+    if not message:
+        return jsonify({'error': 'Mensagem não fornecida'}), 400
+    if len(message) > 500:
+        return jsonify({'error': 'Mensagem muito longa (máximo de 500 caracteres)'}), 400
+
     try:
-        data = request.get_json()
-        message = data.get('message', '')
-        
-        if not message:
-            return jsonify({'error': 'Mensagem não fornecida'}), 400
-        
         result = chatbot.get_response(message)
-        
-        return jsonify({
-            'response': result['response'],
-            'intent': result['intent'],
-            'probability': result['probability'],
-            'all_intents': result.get('all_intents', []),
-            'all_probabilities': result.get('all_probabilities', []),
-            'sentences_processed': result.get('sentences_processed', 1),
-            'multiple_sentences': result.get('sentences_processed', 1) > 1
-        })
-    
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+    except Exception:
+        log.exception('Erro ao processar a mensagem')
+        return jsonify({'error': 'Erro interno ao processar a mensagem'}), 500
+
+    return jsonify({
+        'response': result['response'],
+        'intent': result['intent'],
+        'probability': result['probability'],
+        'all_intents': result.get('all_intents', []),
+        'all_probabilities': result.get('all_probabilities', []),
+        'sentences_processed': result.get('sentences_processed', 1),
+        'multiple_sentences': result.get('sentences_processed', 1) > 1,
+    })
+
 
 @app.route('/intents')
 def get_intents():
-    """Endpoint para ver todas as intenções disponíveis"""
+    """Lista as intenções carregadas."""
     return jsonify(chatbot.intents)
 
+
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # Modo debug só quando pedido explicitamente (FLASK_DEBUG=1)
+    debug = os.environ.get('FLASK_DEBUG') == '1'
+    app.run(debug=debug, host=os.environ.get('HOST', '127.0.0.1'), port=int(os.environ.get('PORT', '5000')))

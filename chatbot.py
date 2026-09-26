@@ -4,17 +4,14 @@ import re
 import nltk
 from collections import Counter
 import math
+from pathlib import Path
 
-# Download necessário do NLTK
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt')
-
-try:
-    nltk.data.find('corpora/stopwords')
-except LookupError:
-    nltk.download('stopwords')
+# Recursos do NLTK: baixados na primeira execução (o punkt_tab é exigido a partir do NLTK 3.9)
+for recurso, caminho in [('punkt_tab', 'tokenizers/punkt_tab'), ('stopwords', 'corpora/stopwords')]:
+    try:
+        nltk.data.find(caminho)
+    except LookupError:
+        nltk.download(recurso, quiet=True)
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -92,7 +89,8 @@ class RestauranteJaponesChatbotSimples:
 
     def load_intents(self):
         """Carrega as intenções do arquivo intents.json"""
-        with open('intents.json', 'r', encoding='utf-8') as f:
+        caminho = Path(__file__).with_name('intents.json')
+        with open(caminho, 'r', encoding='utf-8') as f:
             return json.load(f)
     
     def preprocess_text(self, text):
