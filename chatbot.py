@@ -20,6 +20,8 @@ from nltk.corpus import stopwords  # noqa: E402
 from nltk.stem import RSLPStemmer  # noqa: E402
 from nltk.tokenize import word_tokenize  # noqa: E402
 
+from menu import buscar_categoria, buscar_itens, reais, remover_pratos  # noqa: E402
+
 # Palavras que estão na lista de stopwords do NLTK mas mudam o sentido da frase:
 # "qual o preço", "quanto tempo", "onde fica", "até logo", "não gostei"...
 PALAVRAS_QUE_IMPORTAM = {'qual', 'quais', 'quanto', 'quanta', 'quantos', 'quantas', 'quando',
@@ -57,11 +59,12 @@ class RestauranteJaponesChatbotSimples:
         self.padroes = {}
         presenca = {}
         for intent in self.intents['intents']:
-            conjuntos = []
+            conjuntos = set()
             for pattern in intent['patterns']:
-                palavras = frozenset(self.preprocess_text(pattern))
+                palavras = frozenset(self.preprocess_text(remover_pratos(pattern)))
                 if palavras:
-                    conjuntos.append(palavras)
+                    conjuntos.add(palavras)
+            conjuntos = list(conjuntos)
             self.padroes[intent['tag']] = conjuntos
             for radical in set().union(*conjuntos) if conjuntos else set():
                 presenca[radical] = presenca.get(radical, 0) + 1
@@ -166,7 +169,8 @@ class RestauranteJaponesChatbotSimples:
 
     def predict_intent(self, message):
         """Prediz a intenção da mensagem pela frase de exemplo mais parecida."""
-        message_words = self.preprocess_text(message)
+        # Os nomes dos pratos não decidem a intenção (eles aparecem em pedidos, preços e cardápio)
+        message_words = self.preprocess_text(remover_pratos(message)) or self.preprocess_text(message)
 
         best_intent = "desconhecido"
         best_score = 0.0
@@ -237,6 +241,14 @@ class RestauranteJaponesChatbotSimples:
         
         return best_intent, best_score
     
+    @staticmethod
+    def lista(partes):
+        partes = list(partes)
+        return partes[0] if len(partes) == 1 else ', '.join(partes[:-1]) + ' e ' + partes[-1]
+
+    def opcoes(self, categoria):
+        return self.lista(f"{i['nome']} ({reais(i['preco'])})" for i in categoria['itens'])
+
     def resposta_da_intencao(self, tag):
         for intent_data in self.intents['intents']:
             if intent_data['tag'] == tag:
@@ -259,6 +271,8 @@ class RestauranteJaponesChatbotSimples:
         intents_detected = []
         probabilities = []
         cumprimentou = False
+        pedidos_com_prato = 0
+        ultimos_itens = []
 
         for sentence in sentences:
             if sentence:
@@ -272,47 +286,54 @@ class RestauranteJaponesChatbotSimples:
 
                 intents_detected.append(intent)
                 probabilities.append(probability)
-                
-                # Se for pedido de compra e tem prato, responde confirmando o pedido
-                if intent == "compra" and prato:
-                    responses.append(f"Pedido anotado! Seu(a) {prato.title()} está sendo preparado(a) pelo nosso sushiman. Deseja adicionar algo mais? 🍣")
-                    continue
 
-                # Se for itens disponíveis, responde normalmente
-                if intent == "itens_disponiveis":
-                    for intent_data in self.intents['intents']:
-                        if intent_data['tag'] == intent:
-                            response = random.choice(intent_data['responses'])
-                            responses.append(response)
-                            break
-                    continue
+                itens = buscar_itens(sentence)
+                categoria = None if itens else buscar_categoria(sentence)
+                if itens:
+                    ultimos_itens = itens
 
-                # Cumprimento: responde só uma vez por mensagem ("Oi, boa noite!" não vira dois olás)
+                # Cumprimento: responde só uma vez por mensagem ("Olá! Boa noite!" não vira dois olás)
                 if intent == "cumprimento":
                     if not cumprimentou:
                         responses.append(self.resposta_da_intencao(intent))
                         cumprimentou = True
                     continue
 
-                # Se for compra sem prato, responde normalmente
-                if intent == "compra" and not prato:
-                    for intent_data in self.intents['intents']:
-                        if intent_data['tag'] == intent:
-                            response = random.choice(intent_data['responses'])
-                            responses.append(response)
-                            break
+                if intent == "compra":
+                    if itens:
+                        nomes = self.lista(f"{i['nome']} ({reais(i['preco'])})" for i in itens)
+                        responses.append(f"Pedido anotado: {nomes}. Deseja adicionar mais alguma coisa?")
+                        pedidos_com_prato += 1
+                    elif categoria:
+                        responses.append(f"Temos estes {categoria['categoria'].lower()}: "
+                                         f"{self.opcoes(categoria)}. Qual você prefere?")
+                    else:
+                        responses.append(("compra_generica", self.resposta_da_intencao(intent)))
                     continue
 
-                # Outras intenções
-                response_found = False
-                for intent_data in self.intents['intents']:
-                    if intent_data['tag'] == intent:
-                        response = random.choice(intent_data['responses'])
-                        responses.append(response)
-                        response_found = True
-                        break
-                if not response_found:
-                    responses.append("Desculpe, não entendi muito bem. Pode me falar mais sobre o que você precisa?")
+                # "Quanto custa o temaki?": preço do prato citado (ou do citado antes na mesma mensagem)
+                if intent == "precos":
+                    alvos = itens or ([] if categoria else ultimos_itens)
+                    if alvos:
+                        responses.append(' '.join(f"O {i['nome']} custa {reais(i['preco'])}." for i in alvos))
+                    elif categoria:
+                        faixa = [i['preco'] for i in categoria['itens']]
+                        responses.append(f"{categoria['categoria']} ({categoria['detalhe']}) de {reais(min(faixa))} "
+                                         f"a {reais(max(faixa))}: {self.opcoes(categoria)}.")
+                    else:
+                        responses.append(self.resposta_da_intencao(intent))
+                    continue
+
+                # "Quais temakis vocês têm?": lista a categoria pedida
+                if intent == "itens_disponiveis" and categoria:
+                    responses.append(f"Nossos {categoria['categoria'].lower()}: {self.opcoes(categoria)}.")
+                    continue
+
+                responses.append(self.resposta_da_intencao(intent))
+
+        # Com um prato já anotado, a resposta genérica de "quero fazer um pedido" fica sobrando
+        responses = [r[1] if isinstance(r, tuple) else r for r in responses
+                     if not (isinstance(r, tuple) and pedidos_com_prato)]
 
         # Remove respostas muito similares
         final_responses = []
