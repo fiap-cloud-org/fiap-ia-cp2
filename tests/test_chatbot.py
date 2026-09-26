@@ -81,7 +81,7 @@ def test_virgula_separa_cumprimento_da_pergunta():
 def test_pedido_com_prato_confirma_o_prato():
     r = chatbot.get_response("Quero um hot roll")
     assert r["intent"] == "compra"
-    assert "hot roll" in r["response"].lower()
+    assert "Pedido anotado: Hot Roll (R$ 30,00)" in r["response"]
 
 
 def test_probabilidades_entre_0_e_100():
@@ -95,3 +95,32 @@ def test_cumprimento_uma_vez_por_mensagem():
         r = chatbot.get_response("Olá! Boa noite!")
         assert r["all_intents"] == ["cumprimento", "cumprimento"]
         assert "\n\n" not in r["response"]
+
+
+def test_preco_do_prato_citado():
+    r = chatbot.get_response("Quanto custa o sushi de atum e o hot roll?")
+    assert r["intent"] == "precos"
+    assert "Sushi de Atum custa R$ 20,00" in r["response"]
+    assert "Hot Roll custa R$ 30,00" in r["response"]
+
+
+def test_preco_da_categoria():
+    r = chatbot.get_response("Quanto custa o temaki?")
+    assert "de R$ 22,00 a R$ 28,00" in r["response"]
+
+
+def test_preco_usa_o_prato_citado_antes_na_mensagem():
+    r = chatbot.get_response("Quero um combo salmão, quanto custa?")
+    assert r["all_intents"] == ["compra", "precos"]
+    assert "Combo Salmão custa R$ 65,00" in r["response"]
+
+
+def test_pedido_com_dois_pratos():
+    r = chatbot.get_response("Quero um hot roll e um temaki califórnia")
+    assert "Pedido anotado: Hot Roll (R$ 30,00) e Temaki Califórnia (R$ 24,00)" in r["response"]
+
+
+def test_pedido_de_categoria_pergunta_qual():
+    r = chatbot.get_response("Quero pedir um temaki")
+    assert r["intent"] == "compra"
+    assert "Qual você prefere?" in r["response"]
