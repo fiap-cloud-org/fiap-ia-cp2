@@ -1,27 +1,73 @@
 import json
+import math
 import random
 import re
-import nltk
-from collections import Counter
-import math
+import unicodedata
 from pathlib import Path
 
+import nltk
+
 # Recursos do NLTK: baixados na primeira execução (o punkt_tab é exigido a partir do NLTK 3.9)
-for recurso, caminho in [('punkt_tab', 'tokenizers/punkt_tab'), ('stopwords', 'corpora/stopwords')]:
+for recurso, caminho in [('punkt_tab', 'tokenizers/punkt_tab'),
+                         ('stopwords', 'corpora/stopwords'),
+                         ('rslp', 'stemmers/rslp')]:
     try:
         nltk.data.find(caminho)
     except LookupError:
         nltk.download(recurso, quiet=True)
 
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords  # noqa: E402
+from nltk.stem import RSLPStemmer  # noqa: E402
+from nltk.tokenize import word_tokenize  # noqa: E402
+
+# Palavras que estão na lista de stopwords do NLTK mas mudam o sentido da frase:
+# "qual o preço", "quanto tempo", "onde fica", "até logo", "não gostei"...
+PALAVRAS_QUE_IMPORTAM = {'qual', 'quais', 'quanto', 'quanta', 'quantos', 'quantas', 'quando',
+                         'como', 'onde', 'tem', 'nao', 'ate', 'mais', 'muito'}
+
+# Início de uma nova pergunta ou pedido dentro da mesma mensagem.
+# Usado para separar "Oi, quanto custa o temaki e em quanto tempo chega?" em três frases.
+INICIO_DE_FRASE = (r'(?:quero|queria|preciso|gostaria|vou|qual|quais|quanto|quanta|quantos|quando|como|'
+                   r'onde|em quanto|tem|t[êe]m|voc[êe]s?|aceit|pode|podem|tamb[ée]m|obrigad|valeu|tchau|at[ée] )')
+SEPARADOR_DE_FRASES = re.compile(
+    rf'[.!?;\n]+|,\s*(?={INICIO_DE_FRASE})|\s+e\s+(?={INICIO_DE_FRASE})', re.IGNORECASE)
+
+VERBO_DE_PEDIDO = re.compile(r'\b(quero|queria|gostaria|vou querer|preciso|me v[êe]|manda|pedir|pe[çc]o)\b', re.IGNORECASE)
+
+
+def sem_acento(texto):
+    return ''.join(c for c in unicodedata.normalize('NFKD', texto) if not unicodedata.combining(c))
+
 
 class RestauranteJaponesChatbotSimples:
     def __init__(self):
         self.intents = self.load_intents()
-        self.stop_words = set(stopwords.words('portuguese'))
-        # Adiciona algumas palavras em inglês também
-        self.stop_words.update(['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by'])
+        self.stemmer = RSLPStemmer()
+        stop = {sem_acento(w) for w in stopwords.words('portuguese')}
+        stop.update(['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by'])
+        self.stop_words = stop - PALAVRAS_QUE_IMPORTAM
+        self._indexar()
+
+    def _indexar(self):
+        """Pré-processa as frases de exemplo uma vez e calcula o peso (IDF) de cada radical.
+
+        Um radical que aparece em poucas intenções (ex.: "cust" de custa, "pix") pesa mais
+        do que um que aparece em quase todas (ex.: "salma" de salmão).
+        """
+        self.padroes = {}
+        presenca = {}
+        for intent in self.intents['intents']:
+            conjuntos = []
+            for pattern in intent['patterns']:
+                palavras = frozenset(self.preprocess_text(pattern))
+                if palavras:
+                    conjuntos.append(palavras)
+            self.padroes[intent['tag']] = conjuntos
+            for radical in set().union(*conjuntos) if conjuntos else set():
+                presenca[radical] = presenca.get(radical, 0) + 1
+        total = len(self.padroes)
+        self.idf = {r: math.log(1 + total / n) for r, n in presenca.items()}
+        self.idf_desconhecida = 1.0
 
     def extract_prato(self, text):
         """Extrai o prato japonês da frase, considerando variações e erros comuns."""
@@ -94,58 +140,51 @@ class RestauranteJaponesChatbotSimples:
             return json.load(f)
     
     def preprocess_text(self, text):
-        """Pré-processa o texto removendo pontuação e palavras irrelevantes"""
-        # Remove pontuação e converte para minúsculo
-        text = re.sub(r'[^\w\s]', '', text.lower())
-        # Tokeniza
+        """Minúsculas, sem acento e sem pontuação; tokeniza, tira stopwords e reduz ao radical (RSLP)."""
+        text = re.sub(r'[^\w\s]', ' ', sem_acento(text.lower()))
         words = word_tokenize(text, language='portuguese')
-        # Remove stop words
-        words = [word for word in words if word not in self.stop_words and len(word) > 2]
-        return words
-    
+        return [self.stemmer.stem(w) for w in words if w not in self.stop_words and len(w) > 1]
+
+    def _peso(self, palavras):
+        return sum(self.idf.get(p, self.idf_desconhecida) for p in palavras)
+
     def calculate_similarity(self, text1_words, text2_words):
-        """Calcula similaridade entre duas listas de palavras usando Jaccard"""
+        """Jaccard ponderado pelo IDF, combinado com a cobertura da frase de exemplo.
+
+        A cobertura (quanto da frase de exemplo aparece na mensagem) ajuda quando o cliente
+        escreve uma frase longa que contém um exemplo curto, como "vocês aceitam pix?".
+        """
         if not text1_words or not text2_words:
             return 0.0
-        
-        set1 = set(text1_words)
-        set2 = set(text2_words)
-        
-        intersection = len(set1.intersection(set2))
-        union = len(set1.union(set2))
-        
-        if union == 0:
+        set1, set2 = set(text1_words), set(text2_words)
+        comum = self._peso(set1 & set2)
+        if comum == 0:
             return 0.0
-        
-        return intersection / union
-    
+        jaccard = comum / self._peso(set1 | set2)
+        cobertura = comum / self._peso(set2)
+        return 0.5 * jaccard + 0.5 * cobertura * (comum / self._peso(set1))
+
     def predict_intent(self, message):
-        """Prediz a intenção da mensagem usando similaridade de palavras"""
+        """Prediz a intenção da mensagem pela frase de exemplo mais parecida."""
         message_words = self.preprocess_text(message)
-        
+
         best_intent = "desconhecido"
         best_score = 0.0
-        
-        for intent in self.intents['intents']:
-            max_similarity = 0.0
-            
-            for pattern in intent['patterns']:
-                pattern_words = self.preprocess_text(pattern)
-                similarity = self.calculate_similarity(message_words, pattern_words)
-                
-                if similarity > max_similarity:
-                    max_similarity = similarity
-            
-            if max_similarity > best_score:
-                best_score = max_similarity
-                best_intent = intent['tag']
-        
-        # Se a similaridade for muito baixa, tenta busca por palavras-chave
-        if best_score < 0.1:
+        for tag, conjuntos in self.padroes.items():
+            # Média das 3 frases de exemplo mais parecidas: um exemplo fora do lugar
+            # sozinho não decide a intenção.
+            notas = sorted((self.calculate_similarity(message_words, c) for c in conjuntos), reverse=True)[:3]
+            score = sum(notas) / 3 if notas else 0.0
+            if score > best_score:
+                best_score = score
+                best_intent = tag
+
+        # Similaridade muito baixa: tenta as palavras-chave
+        if best_score < 0.15:
             best_intent, best_score = self.keyword_fallback(message.lower())
-        
+
         return best_intent, best_score
-    
+
     def keyword_fallback(self, message):
         """Busca por palavras-chave específicas se a similaridade for baixa"""
         keywords = {
@@ -205,7 +244,7 @@ class RestauranteJaponesChatbotSimples:
         
         # Divide a mensagem em frases se houver múltiplas
         # Melhora a detecção de separadores de frases
-        sentences = re.split(r'[.!?;]+|\s+e\s+|\s+,\s*(?=quero|preciso|gostaria|vou)', message)
+        sentences = SEPARADOR_DE_FRASES.split(message)
         sentences = [s.strip() for s in sentences if s.strip()]
         if not sentences:
             sentences = [message]
@@ -218,10 +257,15 @@ class RestauranteJaponesChatbotSimples:
         for sentence in sentences:
             if sentence:
                 intent, probability = self.predict_intent(sentence)
+                prato = self.extract_prato(sentence)
+
+                # "Gostaria de philadelphia": verbo de desejo + prato é pedido, não consulta ao cardápio
+                if prato and intent in ('itens_disponiveis', 'desconhecido') and VERBO_DE_PEDIDO.search(sentence):
+                    intent = 'compra'
+                    probability = max(probability, 0.5)
+
                 intents_detected.append(intent)
                 probabilities.append(probability)
-
-                prato = self.extract_prato(sentence)
                 
                 # Se for pedido de compra e tem prato, responde confirmando o pedido
                 if intent == "compra" and prato:
