@@ -4,14 +4,21 @@ import os
 from flask import Flask, jsonify, render_template, request
 
 from chatbot import chatbot
+from menu import CARDAPIO, reais
 
 app = Flask(__name__)
 log = logging.getLogger(__name__)
+app.add_template_filter(reais, 'reais')
 
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template(
+        'home.html',
+        cardapio=CARDAPIO,
+        total_pratos=sum(len(c['itens']) for c in CARDAPIO),
+        total_intencoes=len(chatbot.intents['intents']),
+    )
 
 
 @app.route('/chat', methods=['POST'])
