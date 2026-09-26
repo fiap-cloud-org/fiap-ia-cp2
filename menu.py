@@ -9,6 +9,7 @@ import unicodedata
 CARDAPIO = [
     {
         'categoria': 'Sushis',
+        'slug': 'sushis',
         'detalhe': '8 peças',
         'itens': [
             {'nome': 'Sushi de Salmão', 'descricao': 'Salmão fresco sobre arroz temperado', 'preco': 18,
@@ -25,6 +26,7 @@ CARDAPIO = [
     },
     {
         'categoria': 'Temakis',
+        'slug': 'temakis',
         'detalhe': 'cone de alga',
         'itens': [
             {'nome': 'Temaki Salmão Grelhado', 'descricao': 'Salmão grelhado, cebolinha e tarê', 'preco': 22,
@@ -40,6 +42,7 @@ CARDAPIO = [
     },
     {
         'categoria': 'Pratos quentes',
+        'slug': 'quentes',
         'detalhe': 'serve 1 pessoa',
         'itens': [
             {'nome': 'Yakissoba', 'descricao': 'Macarrão salteado no wok com legumes', 'preco': 35,
@@ -52,6 +55,7 @@ CARDAPIO = [
     },
     {
         'categoria': 'Combinados',
+        'slug': 'combinados',
         'detalhe': 'para dividir',
         'itens': [
             {'nome': 'Combo Salmão', 'descricao': '20 peças só de salmão', 'preco': 65,
