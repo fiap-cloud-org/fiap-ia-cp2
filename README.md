@@ -78,18 +78,18 @@ O cardápio fica em `menu.py` (15 pratos em 4 categorias) e é o mesmo que o sit
 | `POST /chat` | Recebe `{ "message": "..." }` e devolve resposta, intenções e confiança (400 para mensagem vazia ou com mais de 500 caracteres) |
 | `GET /intents` | Lista as intenções carregadas |
 
-### Correções feitas na revisão
+### Decisões técnicas
 
-| Problema encontrado nos testes | Correção |
-|---|---|
-| "Quanto custa o temaki?" era entendido como pedido, e várias intenções extras nunca eram reconhecidas (pix, promoção, horário) | Radicais, peso IDF, pratos tratados à parte e frases de exemplo que estavam na intenção errada removidas |
-| A separação por vírgula nunca funcionava (a regex exigia espaço antes da vírgula) | Nova separação por vírgula e "e" seguidos de início de pergunta |
-| "Olá! Boa noite!" às vezes respondia dois cumprimentos | Cumprimento respondido uma vez por mensagem |
-| Com NLTK 3.9 o tokenizador pedia o recurso `punkt_tab`, que não era baixado | Download do `punkt_tab` e NLTK atualizado |
-| `debug=True` fixo e mensagem de exceção devolvida ao cliente | Debug só com `FLASK_DEBUG=1` e erro 500 genérico |
-| Foto do topo do site com link quebrado e dados de contato que pareciam reais | Ilustrações próprias e contato fictício |
+| Ponto | Como funciona | Por quê |
+|---|---|---|
+| Comparação das frases | Radicais (RSLP), peso IDF e nota pela média das 3 frases de exemplo mais parecidas | "Quanto custa o temaki?" cai em preço e não em pedido, e intenções como pix, promoção e horário são reconhecidas |
+| Várias perguntas numa mensagem | Separação por vírgula e por "e" seguidos de início de pergunta | "Quero um hot roll, quanto tempo demora?" responde as duas coisas |
+| Cumprimento | Respondido uma vez por mensagem | "Olá! Boa noite!" não recebe dois olás |
+| Recursos do NLTK | `punkt_tab`, `stopwords` e `rslp` baixados na primeira execução | O tokenizador do NLTK 3.9 exige o `punkt_tab` |
+| Erros e debug | Debug só com `FLASK_DEBUG=1` e erro 500 sem detalhes da exceção | Nada interno vaza para o cliente |
+| Site | Ilustrações próprias em SVG e dados de contato fictícios | Sem imagens de terceiros e sem dados reais |
 
-Nas 37 frases de teste usadas antes da revisão, o bot acertava 28; agora acerta todas.
+Nas 41 frases de teste de `tests/test_chatbot.py`, o bot acerta todas.
 
 ## Tecnologias utilizadas
 
