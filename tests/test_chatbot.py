@@ -88,3 +88,10 @@ def test_probabilidades_entre_0_e_100():
     r = chatbot.get_response("Olá! Qual o horário de funcionamento? Aceita pix?")
     assert len(r["all_probabilities"]) == 3
     assert all(0 <= p <= 100 for p in r["all_probabilities"])
+
+
+def test_cumprimento_uma_vez_por_mensagem():
+    for _ in range(20):
+        r = chatbot.get_response("Olá! Boa noite!")
+        assert r["all_intents"] == ["cumprimento", "cumprimento"]
+        assert "\n\n" not in r["response"]

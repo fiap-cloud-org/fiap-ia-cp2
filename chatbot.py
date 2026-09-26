@@ -237,6 +237,12 @@ class RestauranteJaponesChatbotSimples:
         
         return best_intent, best_score
     
+    def resposta_da_intencao(self, tag):
+        for intent_data in self.intents['intents']:
+            if intent_data['tag'] == tag:
+                return random.choice(intent_data['responses'])
+        return "Desculpe, não entendi muito bem. Pode me falar mais sobre o que você precisa?"
+
     def get_response(self, message):
         """Retorna resposta para a mensagem, identificando múltiplas intenções e pedidos de sabor."""
         # Normaliza a mensagem
@@ -252,7 +258,7 @@ class RestauranteJaponesChatbotSimples:
         responses = []
         intents_detected = []
         probabilities = []
-        sabor_confirmado = False
+        cumprimentou = False
 
         for sentence in sentences:
             if sentence:
@@ -270,7 +276,6 @@ class RestauranteJaponesChatbotSimples:
                 # Se for pedido de compra e tem prato, responde confirmando o pedido
                 if intent == "compra" and prato:
                     responses.append(f"Pedido anotado! Seu(a) {prato.title()} está sendo preparado(a) pelo nosso sushiman. Deseja adicionar algo mais? 🍣")
-                    sabor_confirmado = True
                     continue
 
                 # Se for itens disponíveis, responde normalmente
@@ -282,13 +287,11 @@ class RestauranteJaponesChatbotSimples:
                             break
                     continue
 
-                # Se for cumprimento, responde só uma vez por conversa
-                if intent == "cumprimento" and len([r for r in responses if "bem-vindo" in r.lower() or "konnichiwa" in r.lower()]) == 0:
-                    for intent_data in self.intents['intents']:
-                        if intent_data['tag'] == intent:
-                            response = random.choice(intent_data['responses'])
-                            responses.append(response)
-                            break
+                # Cumprimento: responde só uma vez por mensagem ("Oi, boa noite!" não vira dois olás)
+                if intent == "cumprimento":
+                    if not cumprimentou:
+                        responses.append(self.resposta_da_intencao(intent))
+                        cumprimentou = True
                     continue
 
                 # Se for compra sem prato, responde normalmente
