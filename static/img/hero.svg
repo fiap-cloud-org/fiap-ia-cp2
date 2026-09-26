@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 440" role="img" aria-label="Tábua de madeira com nigiris de salmão e atum, uramakis e hashis diante de um sol vermelho">
+  <defs>
+    <linearGradient id="madeira" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#B07A4C"/><stop offset="1" stop-color="#8E5E38"/>
+    </linearGradient>
+  </defs>
+  <circle cx="330" cy="215" r="190" fill="#C8412B"/>
+  <!-- hashis -->
+  <g transform="rotate(-14 420 120)">
+    <rect x="300" y="112" width="250" height="9" rx="4.5" fill="#E2C79C"/>
+    <rect x="300" y="128" width="250" height="9" rx="4.5" fill="#D4B384"/>
+  </g>
+  <!-- tábua -->
+  <rect x="58" y="392" width="30" height="34" rx="4" fill="#6E4527"/>
+  <rect x="452" y="392" width="30" height="34" rx="4" fill="#6E4527"/>
+  <rect x="36" y="318" width="468" height="84" rx="14" fill="url(#madeira)"/>
+  <rect x="36" y="318" width="468" height="16" rx="8" fill="#C38C5A"/>
+  <path d="M70 360h140M250 372h120M400 356h70" stroke="#7E5231" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+  <!-- nigiri de salmão -->
+  <g>
+    <rect x="70" y="276" width="124" height="50" rx="25" fill="#F6F0E6"/>
+    <path d="M66 290c10-26 118-32 134-6 4 7-2 13-10 13H78c-9 0-15-2-12-7z" fill="#F0875A"/>
+    <path d="M92 276l14 18M118 272l14 22M146 272l12 22M172 276l8 18" stroke="#FCD4BF" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <!-- nigiri de atum -->
+  <g>
+    <rect x="212" y="276" width="124" height="50" rx="25" fill="#F6F0E6"/>
+    <path d="M208 290c10-26 118-32 134-6 4 7-2 13-10 13H220c-9 0-15-2-12-7z" fill="#B8323F"/>
+    <path d="M240 280c16-6 44-8 70-2" stroke="#D65A63" stroke-width="3" stroke-linecap="round" fill="none"/>
+  </g>
+  <!-- uramakis -->
+  <g>
+    <circle cx="400" cy="292" r="34" fill="#1F2B24"/>
+    <circle cx="400" cy="292" r="28" fill="#F6F0E6"/>
+    <circle cx="400" cy="292" r="13" fill="#F0875A"/>
+    <circle cx="394" cy="297" r="5" fill="#7BAE5A"/>
+    <circle cx="468" cy="298" r="28" fill="#1F2B24"/>
+    <circle cx="468" cy="298" r="23" fill="#F6F0E6"/>
+    <circle cx="468" cy="298" r="10" fill="#B8323F"/>
+  </g>
+  <!-- gergelim -->
+  <g fill="#1F2B24">
+    <ellipse cx="386" cy="276" rx="2" ry="1.2"/><ellipse cx="414" cy="281" rx="2" ry="1.2"/><ellipse cx="404" cy="308" rx="2" ry="1.2"/>
+    <ellipse cx="458" cy="285" rx="2" ry="1.2"/><ellipse cx="478" cy="310" rx="2" ry="1.2"/>
+  </g>
+</svg>
